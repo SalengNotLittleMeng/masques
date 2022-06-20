@@ -1,6 +1,6 @@
 import myAxios from "./http";
 
-function getImg(params) {
+function uploadImg(params) {
   return myAxios({
     url: "/upload",
     method: "post",
@@ -36,7 +36,7 @@ function findPage(params) {
 
 export default {
   //在这里导出所有函数
-  getImg,
+uploadImg,
   getmsg,
   getList,
   findPage,

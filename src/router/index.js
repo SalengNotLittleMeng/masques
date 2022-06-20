@@ -3,14 +3,42 @@ import {
   createWebHistory,
   createWebHashHistory,
 } from "vue-router";
+import  '../utils/login'
+import { isAuthenticated } from "../utils/login";
+import Home from '../page/Home/Home.vue'
 const routes = [
-  //   {
-  //     path: "/",
-  //     name: "Home",
-  //     component: Home,
-  //     children: [
-  //     ],
-  //   },
+    {
+      path: "/",
+      name: "Home",
+      component: Home,
+      meta:{
+        title:'主页'
+     },
+      children: [
+      ],
+    },
+    {
+      path: "/Login",
+      name: "Login",
+      component: ()=>import('../page/Login/Login.vue'),
+       meta:{
+        title:'登录'
+     },
+      children: [
+      ],
+    },
+        {
+      path: "/UserInfo",
+      name: "UserInfo",
+      component: ()=>import('../page/UserInfo/UserInfo.vue'),
+    // 利用元信息判别路由权限
+      meta:{
+        title:'用户信息',
+        requiresAuth:true
+        },
+      children: [
+      ],
+    },
 ];
 
 const router = createRouter({
@@ -18,5 +46,21 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
-
+// 全局路由守卫
+ router.beforeEach(async (to, from) => {
+// 修改不同路由的页面标题
+    let hasTitle=to?.meta?.title
+    document.title=hasTitle?hasTitle:'项目名'
+   if (
+         // 该路由是否只有登录用户才能访问
+      to.meta.requiresAuth&&
+         // 检查用户是否已登录
+        !isAuthenticated() &&
+      //  避免无限重定向
+        to.name !== 'Login'
+   ) {
+     // 将用户重定向到登录页面
+     return { name: 'Login' }
+   }
+ })
 export default router;
