@@ -9,6 +9,5 @@ ms.keys().forEach((item) => {
 const store = createStore({
   modules,
 });
-console.log(modules);
 
 export default store;
