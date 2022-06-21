@@ -18,6 +18,8 @@ import "./assets/icon/iconfoot";
 import component from "./components/components";
 // 引入字体
 // import "./assets/font/font.css";
+// 引入自定义指令
+import directive from './directive/index'
 const app = createApp(App);
 //将axios的二次封装（api）挂载到全局
 app.config.globalProperties.$api = api;
@@ -30,6 +32,7 @@ app
   .use(ElementPlus)
   .use(echarts)
   .use(component)
+  .use(directive)
   .mount("#app");
 
 export default app;
