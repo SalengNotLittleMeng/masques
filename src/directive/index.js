@@ -1,6 +1,3 @@
-import focus from './focus'
-import fixed from './fixed'
-
 let ms = require.context("./", false, /\w.js$/);
 let modules = {};
 ms.keys().forEach((item) => {

@@ -1,22 +1,23 @@
 <template>
   <div>
-        <span>hello home</span> <br>
+        <span v-longpress="uploadImg">hello home</span> <br>
               <input type="file" ref="files" @change="uploadImg" /> <br>
-      <button >点我</button> <br>
+      <button v-debounce:[time]="uploadImg" >点我</button> <br>
     <input v-focus type="text" placeholder="自定义指令">
-    <div v-fixed:[direct]="100" id="top"></div>
+    <div   v-waterMarker="{text:'lzg版权所有',textColor:'rgba(180, 180, 180, 0.4)'}" id="top"></div>
     </div>
+     <div></div>
 </template>
 
 <script>
 export default {
     data(){
         return {
-            direct:'bottom'
+            direct:'bottom',
+            time:2000
         }
     },
   mounted() {
-    console.log('hello')
     // this.$loading()
     // this.$api.homeApi.getmsg({ id: 1 }).then((res) => {
     //   console.log(res);
@@ -29,11 +30,7 @@ export default {
   },
   methods: {
     uploadImg() {
-    //   let img = this.$refs.files.files[0];
-    //   console.log(img);
-    //   this.$api.homeApi.uploadImg({ file: img, name: "小明" }).then((res) => {
-    //     console.log(res);
-    //   });
+        console.log('hellooo')
     },
     doPost() {
     //   this.$api.homeApi.getmsg({ id: 1 }).then((res) => {
@@ -48,6 +45,6 @@ export default {
 #top{
     height: 60px;
     width: 800px;
-    background: red;
+    /* background: red; */
 }
 </style>
