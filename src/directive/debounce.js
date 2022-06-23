@@ -11,7 +11,6 @@
     })
   },
   updated(el,binding){
-    let timer
     el.addEventListener('click', () => {
       if (timer) {
         clearTimeout(timer)

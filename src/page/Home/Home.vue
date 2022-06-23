@@ -1,5 +1,6 @@
 <template>
   <div>
+        <img src="" alt="">
         <span v-longpress="uploadImg">hello home</span> <br>
               <input type="file" ref="files" @change="uploadImg" /> <br>
       <button v-debounce:[time]="uploadImg" >点我</button> <br>
