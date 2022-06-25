@@ -67,7 +67,7 @@ instance.interceptors.response.use(
   },
   (error) => {
     error.config && removePending(error.config);
-    const isLoading = error.config.loading;
+    const isLoading = error?.config?.loading;
     isLoading && closeLoading(isLoading);
     let { response } = error;
     if (response) {

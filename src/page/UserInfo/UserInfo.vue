@@ -1,15 +1,9 @@
 <template>
-  <div>
-        用户信息（需要登录）
-  </div>
+  <div>用户信息（需要登录）</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>

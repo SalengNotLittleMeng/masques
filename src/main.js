@@ -19,12 +19,11 @@ import component from "./components/components";
 // 引入字体
 // import "./assets/font/font.css";
 // 引入自定义指令
-import directive from './directive/index'
+import directive from "./directive/index";
 const app = createApp(App);
 //将axios的二次封装（api）挂载到全局
 app.config.globalProperties.$api = api;
 app.config.globalProperties.$echarts = echarts;
-
 app
   .use(store)
   .use(router)
@@ -34,5 +33,5 @@ app
   .use(component)
   .use(directive)
   .mount("#app");
-
+console.log(app);
 export default app;

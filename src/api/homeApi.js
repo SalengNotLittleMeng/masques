@@ -36,7 +36,7 @@ function findPage(params) {
 
 export default {
   //在这里导出所有函数
-uploadImg,
+  uploadImg,
   getmsg,
   getList,
   findPage,

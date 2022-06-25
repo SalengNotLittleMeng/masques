@@ -1,7 +1,7 @@
 <template>
   <div class="body-box">
     <div>
-    <router-view></router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -18,9 +18,6 @@ export default {
   margin: 0;
   padding: 0;
 }
-body {
-  overflow: hidden;
-}
 .body-center-box {
   position: absolute;
   width: 1440px;
@@ -34,7 +31,7 @@ a {
   color: black;
   text-decoration: none;
 }
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 2px;
 }
 ::-webkit-scrollbar-thumb {
@@ -48,5 +45,5 @@ a {
 }
 ::-webkit-scrollbar-track-piece {
   background-color: transparent;
-}
+} */
 </style>
