@@ -1,3 +1,3 @@
 export function isAuthenticated() {
-  return localStorage.getItem("token") == "";
+  return !localStorage.getItem("token") == "";
 }

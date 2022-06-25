@@ -1,27 +1,13 @@
 <template>
-  <div>
-    <span v-longpress="uploadImg">hello home</span> <br />
-    <input type="file" ref="files" @change="uploadImg" /> <br />
-    <button v-debounce:[time]="doPost">点我</button> <br />
-    <input v-focus type="text" placeholder="自定义指令" />
-    <div
-      v-waterMarker="{
-        text: 'lzg版权所有',
-        textColor: 'rgba(180, 180, 180, 0.4)',
-      }"
-      id="top"
-    ></div>
-  </div>
   <!-- <div v-infinite-scroll="doPost" id="outer">
         <div v-for="item in  arrData" id="innerbox">{{item}}</div>
     </div> -->
-  <button @click="doPost">点我</button>
+  <button @click="doRoute">点我</button>
 </template>
 
 <script>
-import homeApi from "../../api/homeApi";
 import { Api } from "../../descriptor/Api";
-import { log } from "../../descriptor/log";
+import { Router } from "../../descriptor/Router";
 export default {
   data() {
     return {
@@ -31,15 +17,25 @@ export default {
     };
   },
   mounted() {
-    this.doPost({ email: 3, password: 123 });
+    localStorage.setItem("token", "123");
+    // this.doPost({ email: 3, password: 123 });
   },
   methods: {
-    // params是请求参数，res是回调参数
-    @Api({ module: "homeApi", url: "/toLogin" })
-    doPost(params, res) {
-      this.resData = res;
-      console.log(this.resData);
+    doRoute() {
+      // this.doRouter({id:123})
+      this.$router.push({ name: "UserInfo" });
+      console.log(this.$router);
     },
+    @Router({ path: "/UserInfo" })
+    doRouter(params) {
+      console.log(this.$route);
+    },
+    // params是请求参数，res是回调参数
+    // @Api({ module: "homeApi", url: "/toLogin" })
+    // doPost(params, res) {
+    //   this.resData = res;
+    //   console.log(this.resData);
+    // },
   },
 };
 </script>

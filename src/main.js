@@ -33,5 +33,4 @@ app
   .use(component)
   .use(directive)
   .mount("#app");
-console.log(app);
 export default app;
