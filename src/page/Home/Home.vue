@@ -18,7 +18,7 @@ export default {
   },
   mounted() {
     localStorage.setItem("token", "123");
-    // this.doPost({ email: 3, password: 123 });
+    this.doStore();
   },
   methods: {
     doRoute() {
@@ -29,6 +29,9 @@ export default {
     @Router({ path: "/UserInfo" })
     doRouter(params) {
       console.log(this.$route);
+    },
+    doStore() {
+      console.log(this.$store.state.moudlesA);
     },
     // params是请求参数，res是回调参数
     // @Api({ module: "homeApi", url: "/toLogin" })
