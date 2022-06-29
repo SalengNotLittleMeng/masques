@@ -6,6 +6,16 @@ ms.keys().forEach((item) => {
   let name = item.substring(2, item.length - 3);
   modules[name] = ms(item).default;
 });
+console.log(modules);
+for (let m in modules) {
+  let { state, mutations } = modules[m];
+  for (let i in state) {
+    let nameStr = "_new" + i;
+    mutations[nameStr] = function (state, val) {
+      state.num = val;
+    };
+  }
+}
 const store = createStore({
   modules,
 });
