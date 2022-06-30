@@ -2,11 +2,12 @@
   <!-- <div v-infinite-scroll="doPost" id="outer">
         <div v-for="item in  arrData" id="innerbox">{{item}}</div>
     </div> -->
-  <button @click="doStore">登录</button>
-  <div v-for="typeItem in typeAll">
-    <span v-for="(Item, index) in typeItem"
-      >{{ Item }}{{ typeItem.length - 1 == index ? "" : "/" }}</span
-    >
+  <!-- <button @click="doStore">登录</button> -->
+  <!-- <div v-for="typeItem in typeAll">
+        <span  v-for="(Item,index) in typeItem">{{Item}}{{typeItem.length-1==index?"":"/"}}</span>
+    </div> -->
+  <div>
+    <div v-draggble class="drop-box"></div>
   </div>
 </template>
 
@@ -40,16 +41,23 @@ export default {
     // },
     // // params是请求参数，res是回调参数
     // @Api({ module: "homeApi", url: "/toLogin" })
-    // doPost(params, res) {
-    //   this.resData = res;
-    //   doStore();
-    //   doRouter()
-    // },
+    doPost(params, res) {
+      console.log("a");
+      //   this.resData = res;
+      //   doStore();
+      //   doRouter()
+    },
   },
 };
 </script>
 
 <style>
+.drop-box {
+  width: 100px;
+  height: 30px;
+  margin: 32px;
+  background: red;
+}
 img {
   position: relative;
   top: 1000px;

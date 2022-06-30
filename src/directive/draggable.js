@@ -20,6 +20,7 @@ function getScrollWidth() {
 }
 export default {
   mounted(el, binding) {
+    console.log("1111");
     // 设置目标元素基础属性
     el.style.cursor = "move";
     el.style.position = "fixed";
@@ -42,7 +43,6 @@ export default {
       }
       el.style.position = "absolute";
     }
-
     // 鼠标在目标元素上按下
     el.addEventListener("mousedown", (e) => {
       let { width, height } = el.getBoundingClientRect();
@@ -79,7 +79,7 @@ export default {
         } else {
           el.style.top = top + disY + "px";
         }
-        binding.value(e);
+        binding?.value(e);
         return false;
       };
 
