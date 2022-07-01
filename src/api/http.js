@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ElLoading } from "element-plus";
-
+import Baseconfig from "../config/config";
 // 保存取消请求的Map对象
 const pendingMap = new Map();
 // 保存loading相关参数
@@ -25,7 +25,7 @@ const LoadingInstance = {
 // 创建实例
 const instance = axios.create({
   //基础路径
-  baseURL: "http://localhost:8888",
+  baseURL: Baseconfig.baseurl,
   // 请求限时
   timeout: 5000,
 });
@@ -43,10 +43,10 @@ instance.interceptors.request.use(
       }
     }
     // 登录功能扩展时携带token，这个token需要自己存入localstorage
-    let token = localStorage.getItem("token");
+    let token = localStorage.getItem(Baseconfig.tokenName);
     // 如果携带token
     if (token && typeof window !== "undefined") {
-      config.headers.Authorization = token;
+      config.headers[Baseconfig.headerToken] = token;
     }
     return config;
   },

@@ -6,9 +6,7 @@
   <!-- <div v-for="typeItem in typeAll">
         <span  v-for="(Item,index) in typeItem">{{Item}}{{typeItem.length-1==index?"":"/"}}</span>
     </div> -->
-  <div>
-    <div v-draggble class="drop-box"></div>
-  </div>
+  <div>hello</div>
 </template>
 
 <script>
