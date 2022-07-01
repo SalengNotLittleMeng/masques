@@ -1,7 +1,7 @@
 export default {
   // 存入本地的token名
   tokenName: "token",
-  // 后端给的token名
+  //请求头上验证的token名（后端提供）
   headerToken: "Authorization",
   // 基本地址
   baseurl: "http://localhost:8888",
