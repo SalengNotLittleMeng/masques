@@ -20,6 +20,8 @@ import component from "./components/components";
 // import "./assets/font/font.css";
 // 引入自定义指令
 import directive from "./directive/index";
+// 引入mock
+import "./Mock/index";
 const app = createApp(App);
 //将axios的二次封装（api）挂载到全局
 app.config.globalProperties.$api = api;

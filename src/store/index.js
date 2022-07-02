@@ -8,7 +8,6 @@ ms.keys().forEach((item) => {
 
   modules[name] = ms(item).default;
 });
-console.log(modules);
 for (let m in modules) {
   let { state, mutations } = modules[m];
   for (let i in state) {

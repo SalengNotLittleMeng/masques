@@ -1,5 +1,4 @@
 import config from "../config/config";
-console.log(config);
 /**判断用户是否登录
  * @returns {string}
  */

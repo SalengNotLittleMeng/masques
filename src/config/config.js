@@ -5,4 +5,6 @@ export default {
   headerToken: "Authorization",
   // 基本地址
   baseurl: "http://localhost:8888",
+  //  是否启用mock模拟数据
+  useMock: true,
 };

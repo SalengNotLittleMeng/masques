@@ -28,24 +28,11 @@ export default {
     };
   },
   mounted() {
-    //    this.doPost({email:"3094969938@qq.com",password:12345})
+    this.$api.homeApi.getList({ email: 123 }).then((res) => {
+      console.log(res);
+    });
   },
-  methods: {
-    // @Router({ path: "/UserInfo" })
-    // doRouter(params) {},
-    // @Store({module:"moudlesA"})
-    // doStore(store){
-    //   store.num=this.resData
-    // },
-    // // params是请求参数，res是回调参数
-    // @Api({ module: "homeApi", url: "/toLogin" })
-    doPost(params, res) {
-      console.log("a");
-      //   this.resData = res;
-      //   doStore();
-      //   doRouter()
-    },
-  },
+  methods: {},
 };
 </script>
 

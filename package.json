@@ -47,6 +47,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^7.0.4",
     "less": "^3.9.0",
+    "mockjs": "^1.1.0",
     "style-resources-loader": "^1.4.1",
     "vue-cli-plugin-element-plus": "^0.0.13",
     "vue-cli-plugin-style-resources-loader": "~0.1.5"
