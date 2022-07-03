@@ -6,7 +6,7 @@
   <!-- <div v-for="typeItem in typeAll">
         <span  v-for="(Item,index) in typeItem">{{Item}}{{typeItem.length-1==index?"":"/"}}</span>
     </div> -->
-  <div>hello</div>
+  <div>{{ $store.state.moudlesA.num }}</div>
 </template>
 
 <script>
@@ -28,11 +28,23 @@ export default {
     };
   },
   mounted() {
-    this.$api.homeApi.getList({ email: 123 }).then((res) => {
-      console.log(res);
-    });
+    this.doPost({ email: 123 });
+    this.$store.commit("moudlesA/_newbol", false);
+    this.doStore();
   },
-  methods: {},
+  methods: {
+    @Api({ module: "homeApi", url: "/toLogin" })
+    doPost(params, res) {
+      console.log(res);
+    },
+    @Store({ module: "moudlesA" })
+    doStore(state) {
+      this.time = state;
+      setTimeout(() => {
+        this.time.num = 5;
+      }, 1000);
+    },
+  },
 };
 </script>
 

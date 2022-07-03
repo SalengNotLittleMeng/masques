@@ -6,5 +6,4 @@ ms.keys().forEach((item) => {
 
   modules[name] = ms(item).default;
 });
-console.log(modules);
 export default modules;

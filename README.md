@@ -1,15 +1,19 @@
 # 脚手架使用文档
 
 vue-cli 版本:4.5.0
-
 本脚手架在 Vue-cli 的基础上增加了如下功能：
 
 - 对 axios 进行了模块化的二次封装
 - 对动画进行了 promise 封装使其可以进行链式调用
 - 对动画的函数进行封装，可以使用函数的方式代替贝塞尔曲线来确定动画的执行速度曲线
 - 将 iconfoot 封装成了组件，可以通过对组件传参的方式调用
-- 设置了 less,eachart,element 的全局调用
+- 设置了 eachart,element 的全局调用
 - 对 Vuex 进行了模块化处理。
+- 添加了 Mock 的封装来模拟数据
+- 添加了 less 的全局遍历，公用类，全局混入
+- 添加了常用工具函数
+- 添加了常用注解
+- 添加了常用自定义指令
 - 设置了 prettier 进行代码格式化
 - 设置了 gitHooks 和 commitlint,提交时自动格式化并保证 commit 风格统一
 
@@ -23,11 +27,15 @@ vue-cli 版本:4.5.0
   - api:axios 封装的文件夹，封装代码在 http.js,最后暴露出来的模块在 api.js,自己写对应的功能时要新建对应的 JS 文件并将接口函数暴露到 api.js 中
   - components:通用组件文件夹，一些整个项目中需要用到的组件放在此处
   - assets:静态文件文件夹，处理图片，iconfoot,svg 等文件，其中 icon 中的 JS 代码是下载的 iconfoot 的 symbol 文件
+  - config：统一配置文件夹，用来配置项目的 baseurl，token 名称等
   - page:页面文件夹，在这个目录下建立自己对应页面的文件夹，在里面写 Vue 文件即可
+  - descriptor：注解（装饰器）文件夹，在此文件夹下添加项中可以使用的注解
+  - directive：自定义指令文件夹，注册各种自定义指令，这些自定义指令会作为插件安装到 Vue 上
+  - Mock：Mock 模拟数据的文件夹，管理接口模拟数据的部分
   - plugins:通用插件文件夹，默认只有 element 的注册使用
   - router：路由文件夹，管理页面的跳转
   - store:vuex 文件夹，统一状态管理，其中 index.js 负责将所有模块暴露，使用时建立一个自己的模块，按 Vuex 的用法使用即可
-  - themes:less 通用配置文件夹，在此配置项目的主题色，通用字体大小，字体，通用类。
+  - themes:less 通用配置文件夹，在此配置项目的主题色，通用字体大小，字体，通用类，混入等
   - App.vue:Vue 的主组件，进入项目后见到的第一个组件
   - main.js:Vue 的主文件，在此进行 Vue 的通用配置
 
@@ -37,9 +45,22 @@ vue-cli 版本:4.5.0
 
 ## axios 封装
 
-axios 封装的代码在 src/api/http.js 中，主要对请求的拦截器，默认配置，取消请求和错误统一处理进行了封装，如果有生产和开发环境的 baseurl 不同，也可以进行配置，底部的错误码统一处理可以按需配置
+axios 封装的代码在 src/api/http.js 中，
+
+axios 的封装做了以下几个方面的处理：
+
+- 设置了默认配置并区分开发生成环境
+- 添加了请求，响应拦截器，直接返回响应信息的 data
+- 对各种类型的错误进行了统一处理
+- 自动取消短时间内发出的连续请求
+- 传输文件自动配置 formData 参数
+- 根据参数配置请求头并决定是否序列化
+- 配置了 element-ui 中的 loading，可以通过配置决定是否在请求期间开启 loading 动画
+- 支持使用注解进行开发
 
 axois 进行了模块化划分和自动装配，每个模块开发时新建一个**以 Api.js 结尾的文件**（比如 homeApi.js）,先从 http.js 中引入封装好的 axios,然后将对应接口写成函数并暴露出来，在 api.js 中，会执行模块自动装配，将所有暴露出来的函数按模块放入一个对象并暴露出来
+
+如果不想规定模块的名称，可以更改 api.js 中 context 函数的正则来修改
 
 基本用法：
 
@@ -164,6 +185,19 @@ this.$api.homeApi.getmsg({ hi: "vue" }).then(function (res) {
 
 基本格式：this.$api+模块名+接口函数名（传参）+.then 执行回调函数
 
+本脚手架中还为 Api 层添加了注解，在一些简单的业务中，我们可以用注解的方式写 Api 层，这种方式的好处是我们无需写一大串的链式调用，只需要写好配置后去写请求完成部分的逻辑即可，但其灵活性会有所降低，在面对复杂业务时更推荐链式调用的写法
+
+使用注解依然要在模块中按格式去注册并暴露出函数（具体格式参考上面）
+
+```js
+     @Api({module:"homeApi",url:"/toLogin"})
+    doPost(params,res){
+        console.log(res)
+    }
+```
+
+其中两个必选参数：module,url 分别是函数所在的模块名和接口的 url，经过注解后的函数，第一个参数变成要传入的参数，第二个参数变成了请求完成后的回调参数 res(也就是请求到的数据)，我们可以直接使用这个参数进行下一步处理
+
 ## Vuex 的模块化处理
 
 本脚手架对 Vuexj 进行了模块化封装，在 src/store/modules 下按照 modulesA.js 的格式建立 JS 文件即可，index.js 会自动解析这个目录下的所有文件并将他们作为模块挂载到 Vuex 上，模块名为 js 文件名。
@@ -204,6 +238,62 @@ this.$store.state.moudlesA.num;
 ```js
 this.$store.commit("moudlesA/newNumber", 5);
 ```
+
+另外，由于大部分情况下，commit 的作用都是去更改对应 state 中的值，因此在模块化之前，脚手架会自动给每个模块的每个 state 中的每个变量都自动添加一个叫做"\_new+变量名"的 mutations 方法，因此我们可以在没有定义 mutations 的情况下通过这个变量名来修改它
+
+```js
+// 即使没有定义_newbol这个方法，也可以用这个方法去修改bol这个变量
+this.$store.commit("moudlesA/_newbol", false);
+```
+
+在一些情况下，你也可以通过注解的方式来使用 VueX，注解的好处是，在注解修饰的方法内部，可以直接使用或修改 Vuex 中的值，此时 Vuex 的值会响应式地被修改，而无需使用 commmit 方法来手动调用
+
+```js
+    @Store({module:"moudlesA"})
+    doStore(state){
+        console.log(state)
+    }
+```
+
+注解 Store 有一个必选参数 module,这个参数的值是要选择的模块的名称，被注解修饰的函数会有一个默认参数 state,这个参数是一个对象，代表了注解模块中 state 的对象，在被注解的函数中修改 state 这个对象的某个值，会响应式地修改保存在 Vuex 中的对应值
+
+```html
+<div>{{$store.state.moudlesA.num}}</div>
+```
+
+```js
+    @Store({module:"moudlesA"})
+    doStore(state){
+        setTimeout(()=>{
+            state.num=5
+        },1000)
+    }
+    // 1秒后页面显示的值从12变成5
+```
+
+    这种响应式只能发生在state这个对象或这个对象地址的引用上，如果你将这个参数的值赋给某个变量，那么它不会触发响应式
+
+```js
+        doStore(state){
+        this.time=state
+        setTimeout(()=>{
+            this.time.num=5
+        },1000)
+        // 会触发响应式
+    }
+```
+
+```js
+        doStore(state){
+        this.time=state.num
+        setTimeout(()=>{
+            this.time=5
+        },1000)
+    }
+    // 不会触发响应式
+```
+
+简而言之，只有如果需要赋值，要保证将 state 这个对象整体赋值，仅赋值某个变量是无法起到响应式的作用
 
 ## iconfoot 的使用
 
@@ -274,7 +364,7 @@ commitlint.config.js 这个文件中配置了提交规范，提交信息必须�
 为了确保提交信息规范，更建议用 npm run commit 代替 git commit,在 git add .后，使用 npm run commit 命令会自动出现选项界面，选择对应的修改类型并填写信息，commitlint 就可以自动生成符合规范的提交信息
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/cb79acf8933640c0b6461a87e4d6bde4.png)
 
-# 选项的英文看不懂可以参考 commitlint.config.js 中的注释
+** 选项的英文看不懂可以参考 commitlint.config.js 中的注释 **
 
 ## gitHooks 与 commitlint
 
@@ -286,5 +376,3 @@ commitlint.config.js 这个文件中配置了提交规范，提交信息必须�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/cb79acf8933640c0b6461a87e4d6bde4.png)
 
 选项的英文看不懂可以参考 commitlint.config.js 中的注释
-
-> > > > > > > 7a70e1764101e38193eecfb19c98bb6c8dac79b4

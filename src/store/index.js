@@ -13,7 +13,7 @@ for (let m in modules) {
   for (let i in state) {
     let nameStr = "_new" + i;
     mutations[nameStr] = function (state, val) {
-      state.num = val;
+      state[i] = val;
     };
   }
 }

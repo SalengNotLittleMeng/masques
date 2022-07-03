@@ -4,9 +4,7 @@ const ApiMap = new Map();
 function urlMapMaker(apiObj) {
   for (let i in apiObj) {
     let funStr = apiObj[i].toString().replace(/\s*/g, "");
-    console.log(funStr);
     let val = funStr.match(/url:("|')[A-Za-z0-9\/]+("|')/);
-    console.log(val);
     if (val) {
       val = val[0].slice(6, -1);
     } else {
@@ -16,7 +14,6 @@ function urlMapMaker(apiObj) {
     val && ApiMap.set(val, i);
     val && ApiMap.set("/" + val, i);
   }
-  console.log(ApiMap);
 }
 export const Api = function ({ module, url, params }) {
   /**
@@ -25,7 +22,7 @@ export const Api = function ({ module, url, params }) {
    * @param descriptor 对应属性方法的修饰符
    */
   let that = null;
-  let ajaxFun = null;
+  let ajaxFun = () => {};
   getApp().then((res) => {
     that = res.default;
     const api = that.config.globalProperties.$api[module];
@@ -34,7 +31,6 @@ export const Api = function ({ module, url, params }) {
     ajaxFun = api[ajaxFunName];
   });
   return function (target, name, descriptor) {
-    console.log(target, name, descriptor);
     let fn = descriptor.value;
     descriptor.value = function (params, res, ...rest) {
       ajaxFun(params).then((_res) => {
