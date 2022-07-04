@@ -1,12 +1,6 @@
 <template>
-  <!-- <div v-infinite-scroll="doPost" id="outer">
-        <div v-for="item in  arrData" id="innerbox">{{item}}</div>
-    </div> -->
-  <!-- <button @click="doStore">登录</button> -->
-  <!-- <div v-for="typeItem in typeAll">
-        <span  v-for="(Item,index) in typeItem">{{Item}}{{typeItem.length-1==index?"":"/"}}</span>
-    </div> -->
   <div>{{ $store.state.moudlesA.num }}</div>
+  <div class="test">hellllllo</div>
 </template>
 
 <script>
@@ -19,12 +13,6 @@ export default {
       direct: "bottom",
       time: 1000,
       arrData: 30,
-      typeAll: [
-        ["电子", "美容", "电子"],
-        ["电子", "美容", "电子", "美容"],
-        ["电子", "美容", "电子", "美容"],
-        ["电子", "美容", "电子", "美容"],
-      ],
     };
   },
   mounted() {
@@ -48,7 +36,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less" scoped>
+.test {
+  width: 30px;
+  .roundClass(30px);
+  .ellipsis();
+  color: @boder-color;
+  background: red;
+}
 .drop-box {
   width: 100px;
   height: 30px;
