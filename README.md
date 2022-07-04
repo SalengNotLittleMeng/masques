@@ -9,6 +9,7 @@ vue-cli 版本:4.5.0
 - 将 iconfoot 封装成了组件，可以通过对组件传参的方式调用
 - 设置了 eachart,element 的全局调用
 - 对 Vuex 进行了模块化处理。
+- Vue-router 的全局守卫
 - 添加了 Mock 的封装来模拟数据
 - 添加了 less 的全局遍历，公用类，全局混入
 - 添加了常用工具函数
@@ -294,6 +295,38 @@ this.$store.commit("moudlesA/_newbol", false);
 ```
 
 简而言之，只有如果需要赋值，要保证将 state 这个对象整体赋值，仅赋值某个变量是无法起到响应式的作用
+
+## Vue-Router 的全局守卫
+
+vue-router 的封装主要是针对路由守卫的封装，如果需要在到达某一路由时要修改 title 的名称，那么可以在对应的路由配置上配置 meta 属性来实现
+
+```js
+      {
+    path: "/",
+    name: "Home",
+    component: Home,
+    meta: {
+      title: "主页",
+    },
+    children: [],
+  },
+```
+
+meta 属性还可以用来配置路由的权限,当配置了此权限后，只有登录的用户才能访问这一路由，否则会直接跳转到登录页
+
+```js
+  {
+    path: "/UserInfo",
+    name: "UserInfo",
+    component: () => import("../page/UserInfo/UserInfo.vue"),
+    // 利用元信息判别路由权限
+    meta: {
+      title: "用户信息",
+      requiresAuth: true,
+    },
+    children: [],
+  },
+```
 
 ## iconfoot 的使用
 
