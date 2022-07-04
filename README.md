@@ -381,6 +381,41 @@ let line = new Animator(500, function (p) {
 
 less 已经被挂载到全局，我们可以在 src/themes/themes.LESS 这个文件里定义一些全局 less 变量，这些变量可以在全局的 less 中被访问
 
+less 的公共变量分为以下部分
+
+- 全局公共变量，用于配置全局通用的属性
+
+```less
+// 与设计稿的比例换算
+@topx: 0.75;
+// 全局通用less变量
+@primary-color: #3f3e49;
+```
+
+- 通用类,实现一些通用功能的 CSS 语句集
+
+```less
+// 文本溢出呈现省略号，单行有效
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+```
+
+- 混入，实现一些通用功能，相比于通用类可以传入参数，更加灵活
+
+```less
+// 混入
+// 行高居中
+.lineHeightCenter(@fontSize) {
+  font-size: @fontSize;
+  line-height: @fontSize;
+}
+```
+
+- 通用样式，用于覆盖默认样式
+
 ## prettier 格式化
 
 脚手架中已经配置好了 prettier，执行 npm run format 即可将所有 js 和 vue 文件进行格式化，你也可以按照 prettier 的命令，对任意文件进行单独格式化
