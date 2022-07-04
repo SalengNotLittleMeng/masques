@@ -383,7 +383,7 @@ less 已经被挂载到全局，我们可以在 src/themes/themes.LESS 这个文
 
 less 的公共变量分为以下部分
 
-- 全局公共变量，用于配置全局通用的属性
+- 全局公共变量，用于配置全局通用的属性，这些变量可以在全局直接访问使用
 
 ```less
 // 与设计稿的比例换算
@@ -403,14 +403,31 @@ less 的公共变量分为以下部分
 }
 ```
 
+使用方法：
+
+```less
+// 文本溢出呈现省略号，单行有效
+.test {
+  .ellipsis();
+}
+```
+
 - 混入，实现一些通用功能，相比于通用类可以传入参数，更加灵活
 
 ```less
-// 混入
 // 行高居中
 .lineHeightCenter(@fontSize) {
   font-size: @fontSize;
   line-height: @fontSize;
+}
+```
+
+使用方法：
+
+```less
+//画一个直径30px的圆
+.test {
+  .roundClass(30px);
 }
 ```
 
@@ -433,14 +450,3 @@ commitlint.config.js 这个文件中配置了提交规范，提交信息必须�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/cb79acf8933640c0b6461a87e4d6bde4.png)
 
 ** 选项的英文看不懂可以参考 commitlint.config.js 中的注释 **
-
-## gitHooks 与 commitlint
-
-本脚手架的 gitHooks 会在代码提交前，格式化所有代码并使用 commitlint 对提交信息进行检验,如果提交信息非法会拒绝提交代码
-
-commitlint.config.js 这个文件中配置了提交规范，提交信息必须包含配置的内容
-
-为了确保提交信息规范，更建议用 npm run commit 代替 git commit,在 git add .后，使用 npm run commit 命令会自动出现选项界面，选择对应的修改类型并填写信息，commitlint 就可以自动生成符合规范的提交信息
-![在这里插入图片描述](https://img-blog.csdnimg.cn/cb79acf8933640c0b6461a87e4d6bde4.png)
-
-选项的英文看不懂可以参考 commitlint.config.js 中的注释
