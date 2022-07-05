@@ -377,6 +377,58 @@ let line = new Animator(500, function (p) {
 });
 ```
 
+## Mock 的封装
+
+Mock 的封装在 Mock 文件夹中，其中封装部分在 MockServe.js 文件夹中，包括对参数的配置和暴露出的处理函数，这个函数会完成对 url 配置和对请求报文配置的简化工作，同时在最后执行 Mock.mock()函数，需要 Mock 操作的模块只需引入这个函数即可。
+
+每个使用 Mock 的模块在 modules 文件夹下，每个模块引入 MockServe,并进行配置即可，配置项中第一项是 url，可以直接写接口名，无需写出完整请求路径；第二项是请求报文配置项，默认只需配置 data 中返回的内容即可，MockServe 会自动添加 code:200,message:"成功"的配置项，如果需要更改请求状态码或 message，那么在参数中添加这些配置可以覆盖默认配置；第三项是请求方式，默认是 post,如果需要改为其他请求方式在参数上写请求方式名即可
+
+```js
+const tologin = MockServe(
+  "/toLogin",
+  {
+    data: {
+      // 生成十个如下格式的数据
+      "list|10": [
+        {
+          "id|+1": 1, // 数字从当前数开始依次 +1
+          "age|18-40": 20, // 年龄为18-40之间的随机数字
+          "sex|1": ["男", "女"], // 性别是数组中随机的一个
+          name: "@cname", // 名字为随机中文名字
+          email: "@email", // 随机邮箱
+          isShow: "@boolean", // 随机获取boolean值
+        },
+      ],
+    },
+  },
+  "get"
+);
+```
+
+或者如果第二个配置参数仅有 data 一个配置项，可以简写为：
+
+```js
+const tologin = MockServe(
+  "/toLogin",
+  {
+    // 生成十个如下格式的数据
+    "list|10": [
+      {
+        "id|+1": 1, // 数字从当前数开始依次 +1
+        "age|18-40": 20, // 年龄为18-40之间的随机数字
+        "sex|1": ["男", "女"], // 性别是数组中随机的一个
+        name: "@cname", // 名字为随机中文名字
+        email: "@email", // 随机邮箱
+        isShow: "@boolean", // 随机获取boolean值
+      },
+    ],
+  },
+  "get"
+);
+```
+
+最后 Mock/index.js 会自动收集所有模块，并引入到主函数 main.js
+
 ## less 的封装
 
 less 已经被挂载到全局，我们可以在 src/themes/themes.LESS 这个文件里定义一些全局 less 变量，这些变量可以在全局的 less 中被访问
