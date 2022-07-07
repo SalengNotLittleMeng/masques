@@ -1,7 +1,15 @@
 <template>
   <div>{{ $store.state.moudlesA.num }}</div>
   <div id="outer">
-    <div class="test" v-fixed:left="1000">hello</div>
+    <div class="test" v-longpress:100="fun">hello</div>
+    <div
+      class="test-block"
+      v-waterMarker="{
+        font: '18px',
+        text: '版权所有',
+        textColor: 'rgba(180, 180, 180, 0.9)',
+      }"
+    ></div>
     <input v-input:number type="text" value="" />
   </div>
 </template>
@@ -54,6 +62,12 @@ export default {
   .ellipsis();
   color: @boder-color;
   background: red;
+}
+.test-block {
+  width: 300px;
+  height: 90px;
+  margin: 32px;
+  background: white;
 }
 .drop-box {
   width: 100px;

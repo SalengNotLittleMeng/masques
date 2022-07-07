@@ -17,7 +17,6 @@ export default {
       switch (_type) {
         // 数字
         case "number":
-          console.log("21313");
           el.value = el.value.replace(/[^\d]/, "");
           break;
         // 数字+小数
@@ -62,7 +61,6 @@ export default {
     el.$handler(el);
   },
   beforeUpdate(el) {
-    console.log(el);
     el.$handler && el.$handler(el);
   },
 };
