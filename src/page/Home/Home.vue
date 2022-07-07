@@ -2,15 +2,13 @@
   <div>{{ $store.state.moudlesA.num }}</div>
   <div id="outer">
     <div class="test" v-longpress:100="fun">hello</div>
-    <div
-      class="test-block"
-      v-waterMarker="{
-        font: '18px',
-        text: '版权所有',
-        textColor: 'rgba(180, 180, 180, 0.9)',
-      }"
-    ></div>
-    <input v-input:number type="text" value="" />
+    <img
+      :src="img"
+      v-real-img="
+        'https://www.keaidian.com/uploads/allimg/190424/24110307_23.jpg'
+      "
+      alt=""
+    />
   </div>
 </template>
 
@@ -24,6 +22,7 @@ export default {
       direct: "bottom",
       time: 1000,
       arrData: 30,
+      img: "../Home/Admine/img",
     };
   },
   mounted() {

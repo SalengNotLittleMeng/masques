@@ -1,3 +1,24 @@
+/**但图片加载失败时使用备用图片
+ * @param {string} bind.value ：备用图片的url
+ */
+export default {
+  async beforeMount(el, binding) {
+    useRealImg(el, binding);
+  },
+  async updated(el, binding) {
+    useRealImg(el, binding);
+  },
+};
+async function useRealImg(el, binding) {
+  if (binding.value == el.src) {
+    return;
+  }
+  const imgURL = binding.value;
+  if (imgURL) {
+    const exist = await imageIsExist(imgURL);
+    exist && el.setAttribute("src", imgURL);
+  }
+}
 // 判断一个图片是否存在, 注意是异步行为
 function imageIsExist(url) {
   return new Promise((resolve) => {
@@ -15,13 +36,3 @@ function imageIsExist(url) {
     };
   });
 }
-export default {
-  async beforeMount(el, binding) {
-    const imgURL = binding.value;
-    if (imgURL) {
-      const exist = await imageIsExist(imgURL);
-      console.log(exist);
-      !exist && el.setAttribute("src", imgURL);
-    }
-  },
-};
