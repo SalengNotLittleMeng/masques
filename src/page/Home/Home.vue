@@ -1,6 +1,6 @@
 <template>
   <div>{{ $store.state.moudlesA.num }}</div>
-  <div class="test">hellllllo</div>
+  <div class="test" v-debounce:3000="fun">hello</div>
 </template>
 
 <script>
@@ -20,7 +20,15 @@ export default {
     this.$store.commit("moudlesA/_newbol", false);
     this.doStore();
   },
+  computed: {
+    getString() {
+      console.log(`hello world`);
+    },
+  },
   methods: {
+    fun() {
+      console.log(`hello world`);
+    },
     @Api({ module: "homeApi", url: "/toLogin" })
     doPost(params, res) {
       console.log(res);
