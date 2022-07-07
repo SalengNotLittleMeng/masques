@@ -1,14 +1,7 @@
 <template>
   <div>{{ $store.state.moudlesA.num }}</div>
-  <div id="outer">
-    <div class="test" v-longpress:100="fun">hello</div>
-    <img
-      :src="img"
-      v-real-img="
-        'https://www.keaidian.com/uploads/allimg/190424/24110307_23.jpg'
-      "
-      alt=""
-    />
+  <div id="outer" v-infinite-scroll="fun">
+    <div v-for="(item, index) in arr">{{ index }}</div>
   </div>
 </template>
 
@@ -23,6 +16,7 @@ export default {
       time: 1000,
       arrData: 30,
       img: "../Home/Admine/img",
+      arr: [1, 2, 3],
     };
   },
   mounted() {
@@ -37,7 +31,7 @@ export default {
   },
   methods: {
     fun() {
-      console.log(`hello world`);
+      this.arr.push("1");
     },
     @Api({ module: "homeApi", url: "/toLogin" })
     doPost(params, res) {
@@ -85,7 +79,7 @@ img {
 }
 #outer {
   width: 500px;
-  height: 500px;
+  height: 50px;
   background: blue;
   overflow: scroll;
 }
