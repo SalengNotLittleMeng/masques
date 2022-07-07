@@ -1,3 +1,8 @@
+/**对input输入的值进行处理，清除不合规的值
+ * @param {string} bind.arg ：定义规则类型
+ */
+// 使用方法：
+//
 export default {
   mounted(el, binding) {
     const _type = binding.arg;
@@ -12,6 +17,7 @@ export default {
       switch (_type) {
         // 数字
         case "number":
+          console.log("21313");
           el.value = el.value.replace(/[^\d]/, "");
           break;
         // 数字+小数
@@ -55,7 +61,8 @@ export default {
     };
     el.$handler(el);
   },
-  updated(el) {
+  beforeUpdate(el) {
+    console.log(el);
     el.$handler && el.$handler(el);
   },
 };

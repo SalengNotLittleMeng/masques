@@ -1,7 +1,8 @@
 <template>
   <div>{{ $store.state.moudlesA.num }}</div>
   <div id="outer">
-    <div class="test" v-draggable:outer="fun">hello</div>
+    <div class="test" v-fixed:left="1000">hello</div>
+    <input v-input:number type="text" value="" />
   </div>
 </template>
 
