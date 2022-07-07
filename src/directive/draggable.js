@@ -1,26 +1,18 @@
-function getStyle(el, attr) {
-  return el.currentStyle
-    ? el.currentStyle[attr]
-    : window.getComputedStyle(el, false)[attr];
-}
-function getScrollWidth() {
-  let noScroll,
-    scroll,
-    oDiv = document.createElement("DIV");
-  oDiv.style.cssText =
-    "position:absolute; top:-1000px; width:100px; height:100px; overflow:hidden;";
-  noScroll = document.body.appendChild(oDiv).clientWidth;
-  oDiv.style.overflowY = "scroll";
-  scroll = oDiv.clientWidth;
-  document.body.removeChild(oDiv);
-  let isExsit =
-    document.body.scrollHeight >
-    (window.innerHeight || document.documentElement.clientHeight);
-  return isExsit ? noScroll - scroll : 0;
-}
+/**将添加了自定义指令的元素变得可拖拽
+ * @param {Function} bind.value ：每次拖动调用的方法，其中有一个默认事件参数e
+ * @param {string} bind.arg ：限制容器的ID，如果设置这个参数则元素只能在限制容器内部进行拖拽
+ */
+// 使用方法：
+// 让元素变得可拖拽：
+//<div class="test" v-draggable>hello</div>
+// 添加限制容器
+// <div id="outer">
+//       <div class="test" v-draggable:outer>hello</div>
+// </div>
+// 添加拖动的事件函数
+//    <div class="test" v-draggable:outer="fun">hello</div>
 export default {
   mounted(el, binding) {
-    console.log("1111");
     // 设置目标元素基础属性
     el.style.cursor = "move";
     el.style.position = "fixed";
@@ -91,3 +83,23 @@ export default {
     });
   },
 };
+function getStyle(el, attr) {
+  return el.currentStyle
+    ? el.currentStyle[attr]
+    : window.getComputedStyle(el, false)[attr];
+}
+function getScrollWidth() {
+  let noScroll,
+    scroll,
+    oDiv = document.createElement("DIV");
+  oDiv.style.cssText =
+    "position:absolute; top:-1000px; width:100px; height:100px; overflow:hidden;";
+  noScroll = document.body.appendChild(oDiv).clientWidth;
+  oDiv.style.overflowY = "scroll";
+  scroll = oDiv.clientWidth;
+  document.body.removeChild(oDiv);
+  let isExsit =
+    document.body.scrollHeight >
+    (window.innerHeight || document.documentElement.clientHeight);
+  return isExsit ? noScroll - scroll : 0;
+}
