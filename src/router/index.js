@@ -5,7 +5,8 @@ import {
 } from "vue-router";
 import "../utils/login";
 import { isAuthenticated } from "../utils/login";
-import Home from "../view/Home/Home.vue";
+import config from "../config/config";
+import Home from "../view/Demo/DemoHome.vue";
 const routes = [
   {
     path: "/",
@@ -48,6 +49,9 @@ router.beforeEach(async (to, from) => {
   // 修改不同路由的页面标题
   let hasTitle = to?.meta?.title;
   document.title = hasTitle ? hasTitle : "项目名";
+  if (!config.useBeforeEach) {
+    return;
+  }
   if (
     // 该路由是否只有登录用户才能访问
     to.meta.requiresAuth &&
