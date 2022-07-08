@@ -5,7 +5,7 @@ import {
 } from "vue-router";
 import "../utils/login";
 import { isAuthenticated } from "../utils/login";
-import Home from "../page/Home/Home.vue";
+import Home from "../view/Home/Home.vue";
 const routes = [
   {
     path: "/",
@@ -19,7 +19,7 @@ const routes = [
   {
     path: "/Login",
     name: "Login",
-    component: () => import("../page/Login/Login.vue"),
+    component: () => import("../view/Login/Login.vue"),
     meta: {
       title: "登录",
     },
@@ -28,7 +28,7 @@ const routes = [
   {
     path: "/UserInfo",
     name: "UserInfo",
-    component: () => import("../page/UserInfo/UserInfo.vue"),
+    component: () => import("../view/UserInfo/UserInfo.vue"),
     // 利用元信息判别路由权限
     meta: {
       title: "用户信息",

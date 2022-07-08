@@ -1,6 +1,3 @@
-/**但图片加载失败时使用备用图片
- * @param {string} bind.value ：备用图片的url
- */
 export default {
   async beforeMount(el, binding) {
     useRealImg(el, binding);
