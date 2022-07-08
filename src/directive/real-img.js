@@ -1,3 +1,8 @@
+/**当图片加载失败时使用备用图片作为替代
+ * @param {string} bind.value ：备用图片的url
+ */
+// 使用方法：
+//  <img :src="img" v-real-img="'https://www.keaidian.com/uploads/allimg/190424/24110307_23.jpg'" alt=""></img>
 export default {
   async beforeMount(el, binding) {
     useRealImg(el, binding);
