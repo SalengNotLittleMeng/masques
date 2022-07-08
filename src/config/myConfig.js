@@ -1,4 +1,4 @@
-export default {
+const config = {
   // 存入本地的token名
   tokenName: "token",
   //请求头上验证的token名（后端提供）
@@ -10,3 +10,4 @@ export default {
   // 是否启用路由拦截
   useBeforeEach: false,
 };
+export default config;

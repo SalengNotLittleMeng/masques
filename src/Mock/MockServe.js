@@ -1,5 +1,5 @@
 import Mock from "mockjs";
-import config from "../config/config";
+import config from "../config/myConfig";
 import { isRightWebsite } from "../utils/check";
 const { baseurl, useMock } = config;
 Mock.setup({

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ElLoading } from "element-plus";
-import Baseconfig from "../config/config";
+import Baseconfig from "../config/myConfig";
 // 保存取消请求的Map对象
 const pendingMap = new Map();
 // 保存loading相关参数

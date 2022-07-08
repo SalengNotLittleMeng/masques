@@ -1,6 +1,5 @@
 const path = require("path");
 const CompressionPlugin = require("compression-webpack-plugin");
-const { default: config } = require("./src/config/config");
 function resolve(dir) {
   return path.join(__dirname, dir);
 }

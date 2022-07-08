@@ -1,4 +1,4 @@
-import config from "../config/config";
+import config from "../config/myConfig";
 /**判断用户是否登录
  * @returns {string}
  */

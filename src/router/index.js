@@ -5,7 +5,7 @@ import {
 } from "vue-router";
 import "../utils/login";
 import { isAuthenticated } from "../utils/login";
-import config from "../config/config";
+import config from "../config/myConfig";
 import Home from "../view/Demo/DemoHome.vue";
 const routes = [
   {
