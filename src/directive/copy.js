@@ -1,5 +1,5 @@
 /**点击添加自定义指令的元素后复制参数中的值到剪贴板
- * @param {Function | string } bind.value ：要复制到剪贴板的内容，可以是一段文字，也可以是methods或computed
+ * @param {Function | string } bind.value ：要复制到剪贴板的内容，可以是一段文字，也可以是methods或computed；
  * @param {Function} bind.arg ：复制成功后调用的方法
  */
 // 调用方式

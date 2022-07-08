@@ -1,8 +1,8 @@
 /**长按压触发事件
  * @param {Function} bind.value ：长按压触发的函数
- * @param {string} bind.arg ：长按压的时间参数
+ * @param {string} bind.arg ：长按压的时间参数；
  */
-// 使用方法：  <div class="test" v-longpress="fun">hello</div>
+// 使用方法：  <div class="test" v-longpress="fun"> hello</div>
 // 设置按压触发的时间：  <div class="test" v-longpress:100="fun">hello</div>
 export default {
   mounted(el, binding) {

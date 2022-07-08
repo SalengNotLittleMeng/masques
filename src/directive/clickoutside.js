@@ -3,7 +3,7 @@
  */
 // 调用方式
 // 点击其他区域后触发doPost事件
-/* <div class="test" v-clickoutside="doPost">hello</div> */
+/* <div class="test" v-clickoutside="doPost">hello </div> */
 // 点击其他区域后当前元素消失
 /* <div class="test" v-clickoutside>hello</div> */
 export default {

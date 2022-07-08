@@ -1,5 +1,5 @@
 /**对input输入的值进行处理，清除不合规的值
- * @param {string} bind.arg ：定义规则类型
+ * @param {string} bind.arg ：定义规则类型；
  */
 // 使用方法：
 //

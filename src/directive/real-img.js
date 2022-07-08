@@ -21,7 +21,7 @@ async function useRealImg(el, binding) {
     exist && el.setAttribute("src", imgURL);
   }
 }
-// 判断一个图片是否存在, 注意是异步行为
+// 判断一个图片是否存在, 注意是异步行为；
 function imageIsExist(url) {
   return new Promise((resolve) => {
     let img = new Image();

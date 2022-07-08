@@ -1,6 +1,6 @@
 /**让元素固定在页面的某个位置
  * @param {number} bind.value ：元素距离某个位置（默认是顶部）的距离
- * @param {string} bind.arg ：设置元素的定位，默认是顶部
+ * @param {string} bind.arg ：设置元素的定位，默认是顶部；
  */
 // 使用方式：
 // 基本用法：<div class="test" v-fixed>hello</div>

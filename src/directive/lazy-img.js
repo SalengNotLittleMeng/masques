@@ -1,5 +1,5 @@
 /**图片懒加载
- * @param {string} bind.value ：图片的url
+ * @param {string} bind.value ：图片的url；
  */
 // 使用方法：
 //  <img v-lazy-img="'https://www.keaidian.com/uploads/allimg/190424/24110307_23.jpg'" alt=""></img>

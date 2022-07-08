@@ -1,5 +1,5 @@
 /**无限滚动列表（滚动到底部触发事件）
- * @param {Function} bind.value ：滚动到底部触发的事件
+ * @param {Function} bind.value ：滚动到底部触发的事件；
  */
 // 使用方法：
 //   <div id="outer" v-infinite-scroll="fun">
