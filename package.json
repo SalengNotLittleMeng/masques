@@ -10,19 +10,14 @@
     "commit": "npx git-cz"
   },
   "dependencies": {
-    "@ctrl/tinycolor": "^3.4.1",
     "@element-plus/icons-vue": "^1.1.4",
     "@floating-ui/dom": "^0.4.5",
     "@vueuse/core": "^8.3.1",
     "axios": "^0.21.1",
-    "compression-webpack-plugin": "5.0.1",
     "core-js": "^3.6.5",
     "echarts": "^5.1.2",
-    "echarts-gl": "^2.0.9",
     "element-plus": "^2.1.11",
     "lodash-unified": "^1.0.2",
-    "memoize-one": "^6.0.0",
-    "normalize-wheel-es": "^1.1.2",
     "prettier": "^2.6.0",
     "register-service-worker": "^1.7.1",
     "vue": "^3.2.4",
@@ -30,6 +25,7 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "compression-webpack-plugin": "5.0.1",
     "@babel/plugin-proposal-decorators": "^7.18.2",
     "@commitlint/config-conventional": "^16.2.1",
     "@vue/cli-plugin-babel": "~4.5.0",
