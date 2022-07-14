@@ -9,5 +9,9 @@ const config = {
   useMock: true,
   // 是否启用路由拦截
   useBeforeEach: false,
+  auth: {
+    username: "testeradmin",
+    password: "testerpassword",
+  },
 };
 export default config;

@@ -1,4 +1,4 @@
 {
-  "experimentalDecorators": true, // 主要是这个
+  "experimentalDecorators": true,
   "exclude": ["node_modules", "dist"]
 }

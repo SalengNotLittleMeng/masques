@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ElLoading } from "element-plus";
+import Qs from "qs";
+import { ElLoading, ElMessage } from "element-plus";
 import Baseconfig from "../config/myConfig";
 // 保存取消请求的Map对象
 const pendingMap = new Map();
@@ -32,6 +33,8 @@ const instance = axios.create({
 //请求拦截器
 instance.interceptors.request.use(
   (config) => {
+    // 添加auth凭证
+    Baseconfig.auth && (config.auth = Baseconfig.auth);
     // 取消重复请求
     config.repeat_request_cancel && removePending(config);
     addPending(config);
@@ -63,6 +66,9 @@ instance.interceptors.response.use(
     //关闭loading
     const isLoading = response.config.loading;
     isLoading && closeLoading(isLoading);
+    // if (response.data?.code != 200) {
+    //   ElMessage.error("好像出了一点问题哦,请检查表格是否填写完整~");
+    // }
     return response.data;
   },
   (error) => {
@@ -102,7 +108,14 @@ instance.interceptors.response.use(
  */
 function getPendingKey(config) {
   let { url, method, params, data } = config;
-  if (typeof data === "string") data = JSON.parse(data); // response里面返回的config.data是个字符串对象
+  if (typeof data === "string") {
+    try {
+      data = JSON.parse(data);
+    } catch {
+      // catch部分处理表单格式的参数
+      data = data;
+    }
+  } // response里面返回的config.data是个字符串对象
   return [url, method, JSON.stringify(params), JSON.stringify(data)].join("&");
 }
 
@@ -187,15 +200,7 @@ function myAxios(config, loadingConfig = {}) {
         };
         config.transformRequest = [
           (data) => {
-            let result = "";
-            for (let key in data) {
-              result +=
-                encodeURIComponent(key) +
-                "=" +
-                encodeURIComponent(data[key]) +
-                "&";
-            }
-            return result.slice(0, result.length - 1);
+            return Qs.stringify(data);
           },
         ];
         break;
