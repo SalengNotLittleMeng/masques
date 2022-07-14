@@ -67,7 +67,7 @@ instance.interceptors.response.use(
     const isLoading = response.config.loading;
     isLoading && closeLoading(isLoading);
     // if (response.data?.code != 200) {
-    //   ElMessage.error("好像出了一点问题哦,请检查表格是否填写完整~");
+    //   ElMessage.error("好像出了一点问题哦~");
     // }
     return response.data;
   },
@@ -80,20 +80,20 @@ instance.interceptors.response.use(
       //请求不成功但返回结果
       switch (response.status) {
         case 401:
-          console.log("权限不足，请登录");
+          ElMessage.error("请先登录哦~");
           break;
         case 403:
-          console.log("登录已过期");
+          ElMessage.error("登录信息已过期~");
           break;
         case 404:
-          console.log("当前接口不存在");
+          ElMessage.error("没有找到信息");
           break;
       }
     } else {
       //服务器完全没有返回结果（网络问题或服务器崩溃）
       if (!window.navigator.onLine) {
         //断网处理，跳转404页面
-        console.log("断网了！");
+        ElMessage.error("网络好像有一点问题哦~");
       }
       return Promise.reject(error);
     }
