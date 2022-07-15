@@ -26,7 +26,7 @@ const LoadingInstance = {
 // 创建实例
 const instance = axios.create({
   //基础路径
-  baseURL: Baseconfig.baseurl,
+  baseURL: "/api",
   // 请求限时
   timeout: 5000,
 });
