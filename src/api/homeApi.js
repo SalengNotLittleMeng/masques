@@ -10,16 +10,11 @@ function uploadImg(params) {
 }
 
 function getmsg(params) {
-  return myAxios(
-    {
-      url: "/findByName",
-      method: "get",
-      data: params,
-    },
-    {
-      text: "hello",
-    }
-  );
+  return myAxios({
+    url: "/findByName",
+    method: "get",
+    data: params,
+  });
 }
 
 function getList(params) {
@@ -27,6 +22,8 @@ function getList(params) {
     url: "/toLogin",
     method: "post",
     data: params,
+    retryTimes: 3,
+    repeat_request_cancel: false,
   });
 }
 function findPage(params) {

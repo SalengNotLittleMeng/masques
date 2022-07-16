@@ -6,7 +6,7 @@ const config = {
   // 基本地址
   baseurl: "http://localhost:8888",
   //  是否启用mock模拟数据
-  useMock: true,
+  useMock: false,
   // 是否启用路由拦截
   useBeforeEach: false,
   auth: {

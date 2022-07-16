@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>更快，更便捷，开箱即用的Vue脚手架</p>
-    <img class="logo-img" src="@/assets/img/logo.png" alt="" />
+    <img @click="getData" class="logo-img" src="@/assets/img/logo.png" alt="" />
     <h1>Handy-Vue-Cli</h1>
     <div class="type-main">
       <div class="type-main-item" v-for="item in typeList">{{ item }}</div>
@@ -11,6 +11,17 @@
 
 <script>
 export default {
+  mounted() {
+    // console.log()
+  },
+  methods: {
+    getData() {
+      console.log("hi");
+      this.$api.homeApi.getmsg({ id: 1 }).then((res) => {
+        console.log(res);
+      });
+    },
+  },
   data() {
     return {
       typeList: [

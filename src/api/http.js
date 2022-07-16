@@ -36,7 +36,8 @@ instance.interceptors.request.use(
     // 添加auth凭证
     Baseconfig.auth && (config.auth = Baseconfig.auth);
     // 取消重复请求
-    config.repeat_request_cancel && removePending(config);
+    config.repeat_request_cancel &&
+      removePending(config, Boolean(config.retryTimes));
     addPending(config);
     // 添加loading组件
     if (config.loading) {
@@ -72,34 +73,56 @@ instance.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    error.config && removePending(error.config);
-    const isLoading = error?.config?.loading;
+    let { config, response } = error;
+    config && removePending(config, Boolean(config?.retryTimes));
+    const isLoading = config?.loading;
     isLoading && closeLoading(isLoading);
-    let { response } = error;
-    if (response) {
-      //请求不成功但返回结果
-      switch (response.status) {
-        case 401:
-          ElMessage.error("请先登录哦~");
-          break;
-        case 403:
-          ElMessage.error("登录信息已过期~");
-          break;
-        case 404:
-          ElMessage.error("没有找到信息");
-          break;
+    // 进行重连
+    if (config?.retryTimes) {
+      const { _retryCount = 0, retryDelay = 3000, retryTimes } = config;
+      config._retryCount = _retryCount;
+      if (_retryCount >= retryTimes) {
+        return responseStatus(response, error);
       }
-    } else {
-      //服务器完全没有返回结果（网络问题或服务器崩溃）
-      if (!window.navigator.onLine) {
-        //断网处理，跳转404页面
-        ElMessage.error("网络好像有一点问题哦~");
-      }
-      return Promise.reject(error);
+      config._retryCount++;
+      // 延时处理
+      const delay = new Promise((resolve) => {
+        setTimeout(() => {
+          console.log(_retryCount);
+          resolve();
+        }, retryDelay);
+      });
+      // 重新发起请求
+      delay.then(function () {
+        return instance(config);
+      });
     }
+    return responseStatus(response, error);
   }
 );
-
+function responseStatus(response, error) {
+  if (response) {
+    //请求不成功但返回结果
+    switch (response.status) {
+      case 401:
+        ElMessage.error("请先登录哦~");
+        break;
+      case 403:
+        ElMessage.error("登录信息已过期~");
+        break;
+      case 404:
+        ElMessage.error("没有找到信息");
+        break;
+    }
+  } else {
+    //服务器完全没有返回结果（网络问题或服务器崩溃）
+    if (!window.navigator.onLine) {
+      //断网处理，跳转404页面
+      ElMessage.error("网络好像有一点问题哦~");
+    }
+  }
+  return Promise.reject(error);
+}
 // 取消请求
 /**
  * 生成每个请求唯一的键
@@ -137,8 +160,11 @@ function addPending(config) {
  * 删除重复的请求
  * @param {*} config
  */
-function removePending(config) {
+function removePending(config, delKey = false) {
   const pendingKey = getPendingKey(config);
+  if (delKey) {
+    return;
+  }
   if (pendingMap.has(pendingKey)) {
     const cancelToken = pendingMap.get(pendingKey);
     cancelToken(pendingKey);
