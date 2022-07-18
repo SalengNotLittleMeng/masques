@@ -57,6 +57,8 @@ axios 的封装做了以下几个方面的处理：
 - 传输文件自动配置 formData 参数
 - 根据参数配置请求头并决定是否序列化
 - 配置了 element-ui 中的 loading，可以通过配置决定是否在请求期间开启 loading 动画
+- 配置化添加 auth 凭证
+- 支持重连机制
 - 支持使用注解进行开发
 
 axois 进行了模块化划分和自动装配，每个模块开发时新建一个**以 Api.js 结尾的文件**（比如 homeApi.js）,先从 http.js 中引入封装好的 axios,然后将对应接口写成函数并暴露出来，在 api.js 中，会执行模块自动装配，将所有暴露出来的函数按模块放入一个对象并暴露出来
@@ -185,6 +187,31 @@ this.$api.homeApi.getmsg({ hi: "vue" }).then(function (res) {
 ```
 
 基本格式：this.$api+模块名+接口函数名（传参）+.then 执行回调函数
+
+添加 auth 凭证：只需在 src/myConfig.js 中配置好 auth 参数即可
+
+```js
+    auth: {
+    username: "testeradmin",
+    password: "testerpassword",
+  }
+```
+
+重连机制：重连机制默认不开启，可以通过在配置中添加 retryTimes 参数进行开启，这个参数会配置重连的次数，另外，两次重连的时间间隔可以通过 retryDelay 参数配置，不配置的话则默认间隔 0.5s.
+
+另外，当重连机制开启后，取消重复请求的机制将会关闭
+
+```js
+function getList(params) {
+  return myAxios({
+    url: "/toLogin",
+    method: "post",
+    data: params,
+    retryTimes: 3,
+    retryDelay: 1000,
+  });
+}
+```
 
 本脚手架中还为 Api 层添加了注解，在一些简单的业务中，我们可以用注解的方式写 Api 层，这种方式的好处是我们无需写一大串的链式调用，只需要写好配置后去写请求完成部分的逻辑即可，但其灵活性会有所降低，在面对复杂业务时更推荐链式调用的写法
 
