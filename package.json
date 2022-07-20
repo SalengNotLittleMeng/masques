@@ -10,7 +10,6 @@
     "commit": "npx git-cz"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^1.1.4",
     "@floating-ui/dom": "^0.4.5",
     "@vueuse/core": "^8.3.1",
     "axios": "^0.21.1",
