@@ -26,6 +26,10 @@ const app = createApp(App);
 //将axios的二次封装（api）挂载到全局
 app.config.globalProperties.$api = api;
 app.config.globalProperties.$echarts = echarts;
+// 生产环境下取消警告机制
+if (process.env.NODE_ENV === "production") {
+  app.config.warnHandler = () => null;
+}
 app
   .use(store)
   .use(router)
@@ -33,6 +37,10 @@ app
   .use(ElementPlus)
   .use(echarts)
   .use(component)
-  .use(directive)
-  .mount("#app");
+  .use(directive);
+if (document.querySelector("#app").childNodes.length == 0) {
+  app.mount("#app");
+} else {
+  app.mount("#app", false);
+}
 export default app;
