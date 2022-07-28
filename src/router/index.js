@@ -17,26 +17,6 @@ const routes = [
     },
     children: [],
   },
-  {
-    path: "/Login",
-    name: "Login",
-    component: () => import("../view/Login/Login.vue"),
-    meta: {
-      title: "登录",
-    },
-    children: [],
-  },
-  {
-    path: "/UserInfo",
-    name: "UserInfo",
-    component: () => import("../view/UserInfo/UserInfo.vue"),
-    // 利用元信息判别路由权限
-    meta: {
-      title: "用户信息",
-      requiresAuth: true,
-    },
-    children: [],
-  },
 ];
 
 const router = createRouter({

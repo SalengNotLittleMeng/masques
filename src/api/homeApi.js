@@ -9,10 +9,10 @@ function uploadImg(params) {
   });
 }
 
-function getmsg(params) {
+function getMsg(params) {
   return myAxios({
     url: "/findByName",
-    method: "get",
+    method: "post",
     data: params,
   });
 }
@@ -34,7 +34,7 @@ function findPage(params) {
 export default {
   //在这里导出所有函数
   uploadImg,
-  getmsg,
+  getMsg,
   getList,
   findPage,
 };

@@ -26,7 +26,7 @@ const LoadingInstance = {
 // 创建实例
 const instance = axios.create({
   //基础路径
-  baseURL: "/api",
+  baseURL: "http://localhost:8888",
   // 请求限时
   timeout: 5000,
 });
@@ -103,22 +103,33 @@ instance.interceptors.response.use(
 function responseStatus(response, error) {
   if (response) {
     //请求不成功但返回结果
+    let { errorText } = error?.config;
+    let errorTextDefault = "";
     switch (response.status) {
       case 401:
-        ElMessage.error("请先登录哦~");
+        errorTextDefault = "请先登录哦~";
         break;
       case 403:
-        ElMessage.error("登录信息已过期~");
+        errorTextDefault = "登录信息已过期~";
         break;
       case 404:
-        ElMessage.error("没有找到信息");
+        errorTextDefault = "没有找到信息";
         break;
+      case 500:
+        errorTextDefault = "服务器好像有点忙碌哦";
+        break;
+      default:
+        errorTextDefault = "好像有点问题哦";
     }
+    errorText = errorText ? errorText : errorTextDefault;
+    ElMessage.error(errorText);
   } else {
     //服务器完全没有返回结果（网络问题或服务器崩溃）
     if (!window.navigator.onLine) {
       //断网处理，跳转404页面
       ElMessage.error("网络好像有一点问题哦~");
+    } else {
+      ElMessage.error("服务器维护中，请稍后再试");
     }
   }
   return Promise.reject(error);
@@ -190,16 +201,12 @@ function closeLoading(isloading) {
  */
 function myAxios(config, loadingConfig = {}) {
   // 判断是否传参
-  if (JSON.stringify(loadingConfig) != "{}") {
-    config.loading = true;
-  }
-  config.loadingConfig = loadingConfig;
-  let { method, data, type, repeat_request_cancel } = config;
-  config.repeat_request_cancel =
-    repeat_request_cancel === undefined ? true : repeat_request_cancel;
   if (Object.prototype.toString.call(config) === "[object Object]") {
-    config.method = method ? method : "get";
-    config.type = type ? type : "json";
+    const defaultConfig = {
+      method: "post",
+      type: "json",
+    };
+    config = Object.assign(defaultConfig, config);
     switch (config.type) {
       case "json":
         config.headers = {
@@ -233,7 +240,7 @@ function myAxios(config, loadingConfig = {}) {
       default:
         break;
     }
-    if ((config, method == "get")) {
+    if (config.method == "get") {
       config.params = config.data;
     }
     return instance(config);

@@ -12,16 +12,11 @@
 <script>
 export default {
   mounted() {
-    // console.log()
+    this.$api.homeApi.getMsg().then((res) => {
+      console.log(res);
+    });
   },
-  methods: {
-    getData() {
-      console.log("hi");
-      this.$api.homeApi.getmsg({ id: 1 }).then((res) => {
-        console.log(res);
-      });
-    },
-  },
+  methods: {},
   data() {
     return {
       typeList: [
