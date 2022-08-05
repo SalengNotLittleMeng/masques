@@ -62,9 +62,9 @@ instance.interceptors.request.use(
 //响应拦截器
 instance.interceptors.response.use(
   (response) => {
-    // 移除map中的cancelToken
+    // 移除map中的cancelToken，收到响应后不能取消
     removePending(response.config);
-    //关闭loading
+    //关闭loading，取消加载动画
     const isLoading = response.config.loading;
     isLoading && closeLoading(isLoading);
     // if (response.data?.code != 200) {
