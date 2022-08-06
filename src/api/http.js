@@ -200,6 +200,7 @@ function closeLoading(isloading) {
  * @param {*} config
  * @returns Promise
  */
+// 封装一些统一操作
 function myAxios(config, loadingConfig = {}) {
   // 判断是否传参
   if (Object.prototype.toString.call(config) === "[object Object]") {
@@ -207,6 +208,8 @@ function myAxios(config, loadingConfig = {}) {
       method: "post",
       type: "json",
     };
+    // 参数类型修改请求头并调整参数
+    // 根据
     config = Object.assign(defaultConfig, config);
     switch (config.type) {
       case "json":
