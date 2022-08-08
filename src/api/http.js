@@ -20,8 +20,6 @@ const LoadingInstance = {
 //     default:
 //         axios.defaults.baseURL = '';
 // }
-// 根据后端返回格式确定是否开启序列化
-// axios.defaults.transformRequest = data => qs.stringify(data);
 
 // 创建实例
 const instance = axios.create({
