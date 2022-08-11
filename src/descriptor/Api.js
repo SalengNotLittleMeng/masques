@@ -2,6 +2,7 @@
 const getApp = () => import("../main");
 const ApiMap = new Map();
 function urlMapMaker(apiObj) {
+  // 扫描注册的api并集成为map对象
   for (let i in apiObj) {
     let funStr = apiObj[i].toString().replace(/\s*/g, "");
     let val = funStr.match(/url:("|')[A-Za-z0-9\/]+("|')/);
