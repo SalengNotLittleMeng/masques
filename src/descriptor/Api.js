@@ -24,6 +24,7 @@ export const Api = function ({ module, url, params }) {
    */
   let that = null;
   let ajaxFun = () => {};
+  // 通过注解字段查找并调用封装的axios方法
   getApp().then((res) => {
     that = res.default;
     const api = that.config.globalProperties.$api[module];
