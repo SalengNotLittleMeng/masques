@@ -32,6 +32,7 @@ export const Api = function ({ module, url, params }) {
     let ajaxFunName = ApiMap.get(url);
     ajaxFun = api[ajaxFunName];
   });
+  // 在被注解的函数内部调用方法
   return function (target, name, descriptor) {
     let fn = descriptor.value;
     descriptor.value = function (params, res, ...rest) {
