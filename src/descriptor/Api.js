@@ -12,6 +12,7 @@ function urlMapMaker(apiObj) {
       val = funStr.match(/("|')\/[^\/][A-Za-z0-9\/]+/);
       val = val[0]?.slice(2);
     }
+    // 保证不论是否添加/都可以匹配到
     val && ApiMap.set(val, i);
     val && ApiMap.set("/" + val, i);
   }
