@@ -39,6 +39,7 @@ export const Api = function ({ module, url, params }) {
     descriptor.value = function (params, res, ...rest) {
       ajaxFun(params).then((_res) => {
         res = _res;
+        // 重新确定this指向
         fn.call(this, params, res, ...rest);
       });
     };
