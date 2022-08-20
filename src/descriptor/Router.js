@@ -1,5 +1,6 @@
 const getApp = () => import("../main");
 const routesMap = new Map();
+// 收集所有路由
 function getAllRoutes(routes) {
   function getItem(item) {
     let path = item.path.replace(/\s+/g, "").replace(/("|')/g, "");
