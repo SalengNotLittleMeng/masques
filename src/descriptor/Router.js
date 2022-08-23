@@ -5,7 +5,7 @@ function getAllRoutes(routes) {
   function getItem(item) {
     let path = item.path.replace(/\s+/g, "").replace(/("|')/g, "");
     let name = item.name ?? path.replace(/("|')/g, "");
-    // 读入map结构，保证匹配
+    // 读入map结构，保证匹配的多样性
     routesMap.set(path, name);
     routesMap.set(name, path);
   }
