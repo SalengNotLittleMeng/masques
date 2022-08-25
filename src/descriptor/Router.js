@@ -26,6 +26,7 @@ export const Router = function ({ path, name, type }) {
   let routerFun = () => {};
   let paramsType = "params";
   const method = "push";
+  // 根据注解的参数进行匹配
   path = path ? path.replace(/\s+/g, "") : null;
   name = name ? name.replace(/\s+/g, "") : null;
   if (type == "query") {
