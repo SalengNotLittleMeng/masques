@@ -32,6 +32,7 @@ export const Router = function ({ path, name, type }) {
   if (type == "query") {
     paramsType = "query";
   }
+  // 当没有配置相关参数时进行警告
   if (!path && !name) {
     console.warn("至少要使用name或path之中的一种参数哦");
     return;
