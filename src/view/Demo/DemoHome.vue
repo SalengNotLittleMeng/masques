@@ -15,6 +15,7 @@ export default {
     this.$api.homeApi.getMsg().then((res) => {
       console.log(res);
     });
+    console.log("helo");
   },
   methods: {},
   data() {
