@@ -1,3 +1,4 @@
+// 自动给console添加位置信息
 const targetCalleeName = ["log", "info", "error", "debug"].map(
   (item) => `console.${item}`
 );
