@@ -8,6 +8,7 @@ const template = require("@babel/template").default;
 const path = require("path");
 module.exports = function ({ types, template }) {
   return {
+    // babel插件需要visitor属性
     visitor: {
       CallExpression(path, state) {
         if (path.node.isNew) {
