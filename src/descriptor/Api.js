@@ -1,10 +1,10 @@
 // 装饰器的编译在main.js执行之前，因此要异步引入
-const getApp = () => import("../main");
+const getApp = () => import('../main');
 const ApiMap = new Map();
 function urlMapMaker(apiObj) {
   // 扫描注册的api并集成为map对象
-  for (let i in apiObj) {
-    let funStr = apiObj[i].toString().replace(/\s*/g, "");
+  for (const i in apiObj) {
+    const funStr = apiObj[i].toString().replace(/\s*/g, '');
     let val = funStr.match(/url:("|')[A-Za-z0-9\/]+("|')/);
     if (val) {
       val = val[0].slice(6, -1);
@@ -14,10 +14,10 @@ function urlMapMaker(apiObj) {
     }
     // 保证不论是否添加/都可以匹配到
     val && ApiMap.set(val, i);
-    val && ApiMap.set("/" + val, i);
+    val && ApiMap.set('/' + val, i);
   }
 }
-export const Api = function ({ module, url, params }) {
+export const Api = function ({ module, url }) {
   /**
    * @param target 对应 methods 这个对象
    * @param name 对应属性方法的名称
@@ -30,12 +30,12 @@ export const Api = function ({ module, url, params }) {
     that = res.default;
     const api = that.config.globalProperties.$api[module];
     urlMapMaker(api);
-    let ajaxFunName = ApiMap.get(url);
+    const ajaxFunName = ApiMap.get(url);
     ajaxFun = api[ajaxFunName];
   });
   // 在被注解的函数内部调用方法
   return function (target, name, descriptor) {
-    let fn = descriptor.value;
+    const fn = descriptor.value;
     descriptor.value = function (params, res, ...rest) {
       ajaxFun(params).then((_res) => {
         res = _res;

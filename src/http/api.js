@@ -1,4 +1,4 @@
-import homeApi from "./homeApi";
+import homeApi from './homeApi';
 
 export default {
   homeApi,

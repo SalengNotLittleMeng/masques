@@ -68,12 +68,12 @@ axois 进行了模块化划分和自动装配，每个模块开发时新建一�
 基本用法：
 
 ```js
-import myAxios from "./http";
+import myAxios from './http';
 
 function getList(params) {
   return myAxios({
-    url: "/toLogin",
-    method: "post",
+    url: '/toLogin',
+    method: 'post',
     data: params,
   });
 }
@@ -90,15 +90,15 @@ export default {
 // homeApi.js
 function uploadImg(params) {
   return myAxios({
-    url: "/upload",
-    method: "post",
+    url: '/upload',
+    method: 'post',
     data: params,
-    type: "formData",
+    type: 'formData',
   });
   // 调用方法
   let img = this.$refs.files.files[0];
   console.log(img);
-  this.$api.homeApi.getImg({ file: img, name: "小明" }).then((res) => {
+  this.$api.homeApi.getImg({ file: img, name: '小明' }).then((res) => {
     console.log(res);
   });
 }
@@ -119,11 +119,11 @@ myAxios 的参数会在处理后直接传给 axios，因此你可以在里面添
 
 ```js
 return myAxios({
-  url: "/api/login",
-  method: "post",
+  url: '/api/login',
+  method: 'post',
   data: paramsList,
   headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
+    'Content-Type': 'application/x-www-form-urlencoded',
   },
   transformRequest: [
     (data) => {
@@ -139,8 +139,8 @@ return myAxios({
 
 ```js
 return myAxios({
-  url: "/toLogin",
-  method: "post",
+  url: '/toLogin',
+  method: 'post',
   data: params,
   repeat_request_cancel: false,
 });
@@ -151,8 +151,8 @@ axios 的封装中包含了对 element-ui 中 loading 的封装，可以通过�
 ```js
 function getList(params) {
   return myAxios({
-    url: "/toLogin",
-    method: "post",
+    url: '/toLogin',
+    method: 'post',
     data: params,
     loading: true,
   });
@@ -166,12 +166,12 @@ https://element-plus.org/zh-CN/component/loading.html#%E9%85%8D%E7%BD%AE%E9%A1%B
 ```js
 return myAxios(
   {
-    url: "/findByName",
-    method: "get",
+    url: '/findByName',
+    method: 'get',
     data: params,
   },
   {
-    text: "hello",
+    text: 'hello',
   }
 );
 ```
@@ -181,7 +181,7 @@ api.js 这个文件会接收所有模块暴露出来的函数，并将他们统�
 调用示例：
 
 ```js
-this.$api.homeApi.getmsg({ hi: "vue" }).then(function (res) {
+this.$api.homeApi.getmsg({ hi: 'vue' }).then(function (res) {
   console.log(res);
 });
 ```
@@ -204,8 +204,8 @@ this.$api.homeApi.getmsg({ hi: "vue" }).then(function (res) {
 ```js
 function getList(params) {
   return myAxios({
-    url: "/toLogin",
-    method: "post",
+    url: '/toLogin',
+    method: 'post',
     data: params,
     retryTimes: 3,
     retryDelay: 1000,
@@ -264,14 +264,14 @@ this.$store.state.moudlesA.num;
 修改值则需要在 commit 中函数名前加上/模块名，例如：
 
 ```js
-this.$store.commit("moudlesA/newNumber", 5);
+this.$store.commit('moudlesA/newNumber', 5);
 ```
 
 另外，由于大部分情况下，commit 的作用都是去更改对应 state 中的值，因此在模块化之前，脚手架会自动给每个模块的每个 state 中的每个变量都自动添加一个叫做"\_new+变量名"的 mutations 方法，因此我们可以在没有定义 mutations 的情况下通过这个变量名来修改它
 
 ```js
 // 即使没有定义_newbol这个方法，也可以用这个方法去修改bol这个变量
-this.$store.commit("moudlesA/_newbol", false);
+this.$store.commit('moudlesA/_newbol', false);
 ```
 
 在一些情况下，你也可以通过注解的方式来使用 VueX，注解的好处是，在注解修饰的方法内部，可以直接使用或修改 Vuex 中的值，此时 Vuex 的值会响应式地被修改，而无需使用 commmit 方法来手动调用
@@ -403,7 +403,7 @@ src/animator/animator.js 这个文件对动画进行了 promise 封装，使其�
 
 ```js
 let func = new Animator(500, function (p) {
-  document.getElementsByClassName("func")[0].style.opacity = 1;
+  document.getElementsByClassName('func')[0].style.opacity = 1;
 });
 ```
 
@@ -412,7 +412,7 @@ let func = new Animator(500, function (p) {
 ```js
 let line = new Animator(500, function (p) {
   let ty = 400 * p * (2 - p);
-  document.getElementById("hrline").style.width = ty + "px";
+  document.getElementById('hrline').style.width = ty + 'px';
 });
 ```
 
@@ -424,23 +424,23 @@ Mock 的封装在 Mock 文件夹中，其中封装部分在 MockServe.js 文件�
 
 ```js
 const tologin = MockServe(
-  "/toLogin",
+  '/toLogin',
   {
     data: {
       // 生成十个如下格式的数据
-      "list|10": [
+      'list|10': [
         {
-          "id|+1": 1, // 数字从当前数开始依次 +1
-          "age|18-40": 20, // 年龄为18-40之间的随机数字
-          "sex|1": ["男", "女"], // 性别是数组中随机的一个
-          name: "@cname", // 名字为随机中文名字
-          email: "@email", // 随机邮箱
-          isShow: "@boolean", // 随机获取boolean值
+          'id|+1': 1, // 数字从当前数开始依次 +1
+          'age|18-40': 20, // 年龄为18-40之间的随机数字
+          'sex|1': ['男', '女'], // 性别是数组中随机的一个
+          name: '@cname', // 名字为随机中文名字
+          email: '@email', // 随机邮箱
+          isShow: '@boolean', // 随机获取boolean值
         },
       ],
     },
   },
-  "get"
+  'get'
 );
 ```
 
@@ -448,21 +448,21 @@ const tologin = MockServe(
 
 ```js
 const tologin = MockServe(
-  "/toLogin",
+  '/toLogin',
   {
     // 生成十个如下格式的数据
-    "list|10": [
+    'list|10': [
       {
-        "id|+1": 1, // 数字从当前数开始依次 +1
-        "age|18-40": 20, // 年龄为18-40之间的随机数字
-        "sex|1": ["男", "女"], // 性别是数组中随机的一个
-        name: "@cname", // 名字为随机中文名字
-        email: "@email", // 随机邮箱
-        isShow: "@boolean", // 随机获取boolean值
+        'id|+1': 1, // 数字从当前数开始依次 +1
+        'age|18-40': 20, // 年龄为18-40之间的随机数字
+        'sex|1': ['男', '女'], // 性别是数组中随机的一个
+        name: '@cname', // 名字为随机中文名字
+        email: '@email', // 随机邮箱
+        isShow: '@boolean', // 随机获取boolean值
       },
     ],
   },
-  "get"
+  'get'
 );
 ```
 

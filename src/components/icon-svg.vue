@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "icon",
+  name: 'icon',
   props: {
     iconClass: {
       type: String,
@@ -24,11 +24,11 @@ export default {
     color: {
       // 字体颜色
       type: String,
-      default: "#000",
+      default: '#000',
     },
     size: {
       type: String,
-      default: "20px",
+      default: '20px',
     },
     pointer: {
       // 默认不开启鼠标手状

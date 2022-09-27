@@ -1,4 +1,4 @@
-/**点击添加自定义指令元素以外的地方之后触发事件
+/** 点击添加自定义指令元素以外的地方之后触发事件
  * @param {Function} bind.value ：要触发的函数名,如果不填默认是使添加指令的元素消失
  */
 // 调用方式
@@ -9,13 +9,13 @@
 export default {
   beforeMount(el, binding) {
     document.addEventListener(
-      "click",
+      'click',
       (e) => {
         if (!el.contains(e.target)) {
           const func =
             binding.value ||
             function () {
-              el.style.display = "none";
+              el.style.display = 'none';
             };
           func();
         }
@@ -24,6 +24,6 @@ export default {
     );
   },
   unmounted() {
-    document.removeEventListener("click", () => {});
+    document.removeEventListener('click', () => {});
   },
 };

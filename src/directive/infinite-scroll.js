@@ -1,4 +1,4 @@
-/**无限滚动列表（滚动到底部触发事件）
+/** 无限滚动列表（滚动到底部触发事件）
  * @param {Function} bind.value ：滚动到底部触发的事件；
  */
 // 使用方法：
@@ -10,7 +10,7 @@
 //     },
 export default {
   mounted(el, binding) {
-    el.addEventListener("scroll", () => {
+    el.addEventListener('scroll', () => {
       const clientHeight = el.clientHeight;
       const scrollTop = Math.round(el.scrollTop);
       const scrollHeight = el.scrollHeight;
@@ -21,13 +21,13 @@ export default {
   },
   unmounted(el) {
     // 停止监听工作
-    el.removeEventListener("scroll", () => {});
+    el.removeEventListener('scroll', () => {});
   },
 };
 // 近似相等
 function approximate(num1, num2, sum) {
-  let sumArray = [num1 + num2, num1 + num2 + 1, num1 + num2 - 1];
-  if (sumArray.indexOf(sum) != -1) {
+  const sumArray = [num1 + num2, num1 + num2 + 1, num1 + num2 - 1];
+  if (sumArray.indexOf(sum) !== -1) {
     return true;
   }
   return false;

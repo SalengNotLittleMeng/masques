@@ -1,9 +1,3 @@
-function nowtime() {
-  if (typeof performance !== "undefined" && performance.now) {
-    return performance.now();
-  }
-  return Date.now ? Date.now() : new Date().getTime();
-}
 /**
  * Animator类，封装的动画函数
  * @constructor
@@ -20,8 +14,8 @@ class Animator {
   }
 
   animate() {
-    let startTime = 0,
-      duration = this.duration,
+    let startTime = 0;
+    const duration = this.duration,
       update = this.update,
       easing = this.easing,
       self = this;
@@ -31,7 +25,7 @@ class Animator {
 
       function step(timestamp) {
         startTime = startTime || timestamp;
-        let p = Math.min(1.0, (timestamp - startTime) / duration);
+        const p = Math.min(1.0, (timestamp - startTime) / duration);
 
         update.call(self, easing ? easing(p) : p, p);
 
@@ -45,7 +39,7 @@ class Animator {
       self.cancel = function () {
         cancelAnimationFrame(qId);
         update.call(self, 0, 0);
-        reject("User canceled!");
+        reject('User canceled!');
       };
 
       qId = requestAnimationFrame(step);

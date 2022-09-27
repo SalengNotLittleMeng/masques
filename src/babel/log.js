@@ -1,12 +1,8 @@
 // 自动给console添加位置信息
-const targetCalleeName = ["log", "info", "error", "debug"].map(
-  (item) => `console.${item}`
-);
-const generate = require("@babel/generator").default;
-const types = require("@babel/types");
-const template = require("@babel/template").default;
-const path = require("path");
+const targetCalleeName = ['log', 'info', 'error', 'debug'].map((item) => `console.${item}`);
+const generate = require('@babel/generator').default;
 module.exports = function ({ types, template }) {
+  console.log(types);
   return {
     // babel插件需要visitor属性来运行
     visitor: {

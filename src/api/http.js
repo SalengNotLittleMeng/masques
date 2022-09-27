@@ -1,7 +1,7 @@
-import axios from "axios";
-import Qs from "qs";
-import { ElLoading, ElMessage } from "element-plus";
-import Baseconfig from "../config/myConfig";
+import axios from 'axios';
+import Qs from 'qs';
+import { ElLoading, ElMessage } from 'element-plus';
+import Baseconfig from '../config/myConfig';
 // 保存取消请求的Map对象
 const pendingMap = new Map();
 // 保存loading相关参数
@@ -23,19 +23,18 @@ const LoadingInstance = {
 
 // 创建实例
 const instance = axios.create({
-  //基础路径
-  baseURL: "http://localhost:8888",
+  // 基础路径
+  baseURL: 'http://localhost:8888',
   // 请求限时
   timeout: 5000,
 });
-//请求拦截器
+// 请求拦截器
 instance.interceptors.request.use(
   (config) => {
     // 添加auth凭证
     Baseconfig.auth && (config.auth = Baseconfig.auth);
     // 取消重复请求
-    config.repeat_request_cancel &&
-      removePending(config, Boolean(config.retryTimes));
+    config.repeat_request_cancel && removePending(config, Boolean(config.retryTimes));
     addPending(config);
     // 添加loading组件
     if (config.loading) {
@@ -45,9 +44,9 @@ instance.interceptors.request.use(
       }
     }
     // 登录功能扩展时携带token，这个token需要自己存入localstorage
-    let token = localStorage.getItem(Baseconfig.tokenName);
+    const token = localStorage.getItem(Baseconfig.tokenName);
     // 如果携带token
-    if (token && typeof window !== "undefined") {
+    if (token && typeof window !== 'undefined') {
       config.headers[Baseconfig.headerToken] = token;
     }
     return config;
@@ -57,12 +56,12 @@ instance.interceptors.request.use(
   }
 );
 
-//响应拦截器
+// 响应拦截器
 instance.interceptors.response.use(
   (response) => {
     // 移除map中的cancelToken，收到响应后不能取消
     removePending(response.config);
-    //关闭loading，取消加载动画
+    // 关闭loading，取消加载动画
     const isLoading = response.config.loading;
     isLoading && closeLoading(isLoading);
     // if (response.data?.code != 200) {
@@ -72,7 +71,7 @@ instance.interceptors.response.use(
   },
   // 统一错误处理
   (error) => {
-    let { config, response } = error;
+    const { config, response } = error;
     config && removePending(config, Boolean(config?.retryTimes));
     const isLoading = config?.loading;
     isLoading && closeLoading(isLoading);
@@ -101,34 +100,34 @@ instance.interceptors.response.use(
 );
 function responseStatus(response, error) {
   if (response) {
-    //请求不成功但返回结果
-    let { errorText } = error?.config;
-    let errorTextDefault = "";
+    // 请求不成功但返回结果
+    let { errorText } = error?.config || '';
+    let errorTextDefault = '';
     switch (response.status) {
       case 401:
-        errorTextDefault = "请先登录哦~";
+        errorTextDefault = '请先登录哦~';
         break;
       case 403:
-        errorTextDefault = "登录信息已过期~";
+        errorTextDefault = '登录信息已过期~';
         break;
       case 404:
-        errorTextDefault = "没有找到信息";
+        errorTextDefault = '没有找到信息';
         break;
       case 500:
-        errorTextDefault = "服务器好像有点忙碌哦";
+        errorTextDefault = '服务器好像有点忙碌哦';
         break;
       default:
-        errorTextDefault = "好像有点问题哦";
+        errorTextDefault = '好像有点问题哦';
     }
     errorText = errorText ? errorText : errorTextDefault;
     ElMessage.error(errorText);
   } else {
-    //服务器完全没有返回结果（网络问题或服务器崩溃）
+    // 服务器完全没有返回结果（网络问题或服务器崩溃）
     if (!window.navigator.onLine) {
-      //断网处理，跳转404页面
-      ElMessage.error("网络好像有一点问题哦~");
+      // 断网处理，跳转404页面
+      ElMessage.error('网络好像有一点问题哦~');
     } else {
-      ElMessage.error("服务器维护中，请稍后再试");
+      ElMessage.error('服务器维护中，请稍后再试');
     }
   }
   return Promise.reject(error);
@@ -140,16 +139,17 @@ function responseStatus(response, error) {
  * @returns string
  */
 function getPendingKey(config) {
-  let { url, method, params, data } = config;
-  if (typeof data === "string") {
+  const { url, method, params } = config;
+  let { data } = config;
+  if (typeof data === 'string') {
     try {
       data = JSON.parse(data);
     } catch {
       // catch部分处理表单格式的参数
-      data = data;
+      return;
     }
   } // response里面返回的config.data是个字符串对象
-  return [url, method, JSON.stringify(params), JSON.stringify(data)].join("&");
+  return [url, method, JSON.stringify(params), JSON.stringify(data)].join('&');
 }
 
 /**
@@ -186,7 +186,9 @@ function removePending(config, delKey = false) {
  * @param {boolean} isloading
  */
 function closeLoading(isloading) {
-  if (isloading && LoadingInstance._count > 0) LoadingInstance._count--;
+  if (isloading && LoadingInstance._count > 0) {
+    LoadingInstance._count--;
+  }
   if (LoadingInstance._count === 0) {
     LoadingInstance._target.close();
     LoadingInstance._target = null;
@@ -201,37 +203,37 @@ function closeLoading(isloading) {
 // 封装一些统一操作
 function myAxios(config, loadingConfig = {}) {
   // 判断是否传参
-  if (Object.prototype.toString.call(config) === "[object Object]") {
+  if (Object.prototype.toString.call(config) === '[object Object]') {
     const defaultConfig = {
-      method: "post",
-      type: "json",
+      method: 'post',
+      type: 'json',
     };
     // 参数类型修改请求头并调整参数
     // 根据
     config = Object.assign(defaultConfig, config);
     switch (config.type) {
-      case "json":
+      case 'json':
         config.headers = {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         };
         break;
-      case "formData":
+      case 'formData':
         config.headers = {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         };
-        let params = data;
+        const params = config.data;
         let newParams = null;
         if (params) {
           newParams = new FormData();
-          for (let i in params) {
+          for (const i in params) {
             newParams.append(i, params[i]);
           }
         }
         config.data = newParams;
         break;
-      case "urlencoded":
+      case 'urlencoded':
         config.headers = {
-          "Content-Type": "application/x-www-form-urlencoded",
+          'Content-Type': 'application/x-www-form-urlencoded',
         };
         config.transformRequest = [
           (data) => {
@@ -242,10 +244,10 @@ function myAxios(config, loadingConfig = {}) {
       default:
         break;
     }
-    if (config.method == "get") {
+    if (config.method === 'get') {
       config.params = config.data;
     }
-    return instance(config);
+    return instance(config, loadingConfig);
   }
 }
 export default myAxios;

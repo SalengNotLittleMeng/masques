@@ -1,4 +1,4 @@
-/**长按压触发事件
+/** 长按压触发事件
  * @param {Function} bind.value ：长按压触发的函数
  * @param {string} bind.arg ：长按压的时间参数；
  */
@@ -6,14 +6,14 @@
 // 设置按压触发的时间：  <div class="test" v-longpress:100="fun">hello</div>
 export default {
   mounted(el, binding) {
-    if (typeof binding.value !== "function") {
-      throw "callback must be a function";
+    if (typeof binding.value !== 'function') {
+      throw 'callback must be a function';
     }
     // 定义变量
     let pressTimer = null;
     // 创建计时器（ 1.5秒后执行函数 ）
-    let start = (e) => {
-      if (e.type === "click" && e.button !== 0) {
+    const start = (e) => {
+      if (e.type === 'click' && e.button !== 0) {
         return;
       }
       if (pressTimer === null) {
@@ -23,7 +23,7 @@ export default {
       }
     };
     // 取消计时器
-    let cancel = () => {
+    const cancel = () => {
       if (pressTimer !== null) {
         clearTimeout(pressTimer);
         pressTimer = null;
@@ -34,12 +34,12 @@ export default {
       binding.value(e);
     };
     // 添加事件监听器
-    el.addEventListener("mousedown", start);
-    el.addEventListener("touchstart", start);
+    el.addEventListener('mousedown', start);
+    el.addEventListener('touchstart', start);
     // 取消计时器
-    el.addEventListener("click", cancel);
-    el.addEventListener("mouseout", cancel);
-    el.addEventListener("touchend", cancel);
-    el.addEventListener("touchcancel", cancel);
+    el.addEventListener('click', cancel);
+    el.addEventListener('mouseout', cancel);
+    el.addEventListener('touchend', cancel);
+    el.addEventListener('touchcancel', cancel);
   },
 };

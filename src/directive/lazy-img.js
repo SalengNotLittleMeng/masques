@@ -1,4 +1,4 @@
-/**图片懒加载
+/** 图片懒加载
  * @param {string} bind.value ：图片的url；
  */
 // 使用方法：

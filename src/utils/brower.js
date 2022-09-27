@@ -1,9 +1,9 @@
-/**获取当前url
+/** 获取当前url
  * @returns {string}  当前url
  */
 export const currentURL = () => window.location.href;
 
-/**当前浏览器可视范围高度
+/** 当前浏览器可视范围高度
  * @returns {number}  当前浏览器可视范围高度
  */
 export function getClientHeight() {
@@ -21,15 +21,15 @@ export function getClientHeight() {
   }
   return clientHeight;
 }
-/**当前浏览器可视范围宽度
+/** 当前浏览器可视范围宽度
  * @returns {number}  当前浏览器可视范围宽度
  */
 export function getPageViewWidth() {
-  let d = document,
-    a = d.compatMode == "BackCompat" ? d.body : d.documentElement;
+  const d = document,
+    a = d.compatMode === 'BackCompat' ? d.body : d.documentElement;
   return a.clientWidth;
 }
-/**开启全屏
+/** 开启全屏
  * @param {*} element
  */
 export function launchFullscreen(element) {
@@ -43,7 +43,7 @@ export function launchFullscreen(element) {
     element.webkitRequestFullScreen();
   }
 }
-/**关闭全屏
+/** 关闭全屏
  */
 export function exitFullscreen() {
   if (document.exitFullscreen) {
@@ -57,7 +57,7 @@ export function exitFullscreen() {
   }
 }
 
-/**返回滚动条位置
+/** 返回滚动条位置
  * @param {document} element
  * @returns {object}  当前x轴和y轴滚动条的位置
  */
@@ -65,16 +65,16 @@ export const getScrollPosition = (el = window) => ({
   x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
   y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop,
 });
-/**滚动到某一位置
+/** 滚动到某一位置
  * @param {document} element
  * @returns {object}  当前x轴和y轴滚动条的位置
  */
 export const smoothScroll = (element) => {
   document.querySelector(element).scrollIntoView({
-    behavior: "smooth",
+    behavior: 'smooth',
   });
 };
-/**滚动到页面顶部
+/** 滚动到页面顶部
  */
 export const scrollToTop = () => {
   const c = document.documentElement.scrollTop || document.body.scrollTop;
@@ -84,19 +84,18 @@ export const scrollToTop = () => {
   }
 };
 
-/**判断平台是android还是ios
+/** 判断平台是android还是ios
  * @returns {string} 平台名称
  */
 export function getOSType() {
-  let u = navigator.userAgent,
-    app = navigator.appVersion;
-  let isAndroid = u.indexOf("Android") > -1 || u.indexOf("Linux") > -1;
-  let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+  const u = navigator.userAgent;
+  const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+  const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
   if (isIOS) {
-    return "ios";
+    return 'ios';
   }
   if (isAndroid) {
-    return "android";
+    return 'android';
   }
-  return "other";
+  return 'other';
 }

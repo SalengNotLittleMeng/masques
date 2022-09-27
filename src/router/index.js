@@ -1,19 +1,15 @@
-import {
-  createRouter,
-  createWebHistory,
-  createWebHashHistory,
-} from "vue-router";
-import "../utils/login";
-import { isAuthenticated } from "../utils/login";
-import config from "../config/myConfig";
-import Home from "../view/Demo/DemoHome.vue";
+import { createRouter, createWebHashHistory } from 'vue-router';
+import '../utils/login';
+import { isAuthenticated } from '../utils/login';
+import config from '../config/myConfig';
+import Home from '../view/Demo/DemoHome.vue';
 const routes = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Home,
     meta: {
-      title: "主页",
+      title: '主页',
     },
     children: [],
   },
@@ -25,10 +21,10 @@ const router = createRouter({
   routes,
 });
 // 全局路由守卫
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to) => {
   // 修改不同路由的页面标题
-  let hasTitle = to?.meta?.title;
-  document.title = hasTitle ? hasTitle : "项目名";
+  const hasTitle = to?.meta?.title;
+  document.title = hasTitle ? hasTitle : '项目名';
   if (!config.useBeforeEach) {
     return;
   }
@@ -38,10 +34,10 @@ router.beforeEach(async (to, from) => {
     // 检查用户是否已登录
     !isAuthenticated() &&
     //  避免无限重定向
-    to.name !== "Login"
+    to.name !== 'Login'
   ) {
     // 将用户重定向到登录页面
-    return { name: "Login" };
+    return { name: 'Login' };
   }
 });
 export default router;

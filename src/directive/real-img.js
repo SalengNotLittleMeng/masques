@@ -1,4 +1,4 @@
-/**当图片加载失败时使用备用图片作为替代
+/** 当图片加载失败时使用备用图片作为替代
  * @param {string} bind.value ：备用图片的url
  */
 // 使用方法：
@@ -12,13 +12,13 @@ export default {
   },
 };
 async function useRealImg(el, binding) {
-  if (binding.value == el.src) {
+  if (binding.value === el.src) {
     return;
   }
   const imgURL = binding.value;
   if (imgURL) {
     const exist = await imageIsExist(imgURL);
-    exist && el.setAttribute("src", imgURL);
+    exist && el.setAttribute('src', imgURL);
   }
 }
 // 判断一个图片是否存在, 注意是异步行为；
