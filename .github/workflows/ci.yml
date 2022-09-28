@@ -14,7 +14,7 @@ jobs:
 
       - name: Install and Build # 下载依赖 打包项目
         run: |
-          npm install
+          yarn
           npm run build
 
       - name: Deploy # 将打包内容发布到 github page
@@ -23,5 +23,5 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.HANDY_VUE_CIL }} # VUE_ADMIN_TEMPLATE 是我的 secret 名称，需要替换成你的
           BRANCH: master
           FOLDER: dist
-          REPOSITORY_NAME: woai3c/woai3c.github.io # 这是我的 github page 仓库
-          TARGET_FOLDER: github-actions-demo # 打包的文件将放到静态服务器 github-actions-demo 目录下
+          REPOSITORY_NAME: salengnotlittlemeng.github.io# 这是我的 github page 仓库
+          TARGET_FOLDER: Handy-Vue-Cl # 打包的文件将放到静态服务器 github-actions-demo 目录下

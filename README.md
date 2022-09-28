@@ -372,7 +372,7 @@ directive 文件夹下的 index.js 会**自动收集**模块中所有的自定�
 iconfoot 已经被封装成组件并挂载到全局，在任意组件中无需引入即可使用
 
 ```js
-<icon iconClass="bofang" color="red"></icon>
+<vue-icon iconClass="bofang" color="red"></vue-icon>
 ```
 
 iconClass 是一个必选项，要根据 iconfoot 官网中项目的名字来写,名字前去掉 icon，其余可以传的属性还包括：
@@ -387,7 +387,7 @@ color,width,height,cursor
 
 ```js
 install(app) {
-    app.component("icon", icon);
+      app.component('VueIcon', icon);
   },
 ```
 

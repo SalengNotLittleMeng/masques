@@ -18,6 +18,7 @@
     "echarts": "^5.1.2",
     "element-plus": "^2.1.11",
     "eslint": "^8.24.0",
+    "gh-pages": "^4.0.0",
     "lodash-es": "^4.17.21",
     "lodash-unified": "^1.0.2",
     "qs": "^6.11.0",
@@ -55,5 +56,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "homepage": "https://salengnotlittlemeng.github.io/Handy-Vue-Cl"
 }
