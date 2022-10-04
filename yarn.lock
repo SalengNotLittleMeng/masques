@@ -8830,6 +8830,11 @@ split2@^3.0.0:
   dependencies:
     readable-stream "^3.0.0"
 
+sprage@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmmirror.com/sprage/-/sprage-1.2.0.tgz#a45d9cc3a64bd8cac2600de1d35450a9334b1928"
+  integrity sha512-hQ97j2YoZPkrtqiMQifOVs6kfwvdUHdYU4s8Kcv6dsx8GvTFN9viTMbw4cPwKeJs/xRj4GBpy4zaGIqTONNSPw==
+
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.npm.taobao.org/sprintf-js/download/sprintf-js-1.0.3.tgz"

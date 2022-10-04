@@ -23,6 +23,7 @@
     "lodash-unified": "^1.0.2",
     "qs": "^6.11.0",
     "register-service-worker": "^1.7.1",
+    "sprage": "^1.2.0",
     "vue": "^3.2.4",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
