@@ -1,0 +1,90 @@
+.body-size[data-v-70cc7d8c] {
+  width: 100%;
+  height: 100vh;
+}
+.to-center-ab[data-v-70cc7d8c] {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+.bg-maker[data-v-70cc7d8c] {
+  background-repeat: none;
+  background-size: 100% 100%;
+}
+.ellipsis[data-v-70cc7d8c] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+[data-v-70cc7d8c] {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+article[data-v-70cc7d8c],
+aside[data-v-70cc7d8c],
+figcaption[data-v-70cc7d8c],
+figure[data-v-70cc7d8c],
+footer[data-v-70cc7d8c],
+header[data-v-70cc7d8c],
+hgroup[data-v-70cc7d8c],
+main[data-v-70cc7d8c],
+nav[data-v-70cc7d8c],
+section[data-v-70cc7d8c] {
+  display: block;
+}
+textarea[data-v-70cc7d8c] {
+  resize: none;
+}
+a[data-v-70cc7d8c] {
+  color: #000;
+  text-decoration: none;
+}
+[data-v-70cc7d8c]::-webkit-scrollbar {
+  width: 2px;
+}
+[data-v-70cc7d8c]::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  height: 3px;
+}
+[data-v-70cc7d8c]::-webkit-scrollbar-track {
+  height: 3px;
+  max-height: 5px;
+}
+[data-v-70cc7d8c]::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+.logo-img[data-v-70cc7d8c] {
+  display: block;
+  margin: 30px auto;
+}
+h1[data-v-70cc7d8c] {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+  text-align: center;
+}
+p[data-v-70cc7d8c] {
+  width: 500px;
+  margin: 30px auto;
+  margin-bottom: 0;
+  width: 300px;
+  text-align: center;
+}
+.type-main[data-v-70cc7d8c] {
+  width: 600px;
+  margin: 30px auto;
+  text-align: center;
+}
+.type-main-item[data-v-70cc7d8c] {
+  line-height: 25px;
+  color: #42b983;
+}
+.svg-icon {
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
