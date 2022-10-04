@@ -20,6 +20,6 @@ jobs:
       - name: Deploy # 将打包内容发布到 github page
         uses: JamesIves/github-pages-deploy-action@3.5.9 # 使用别人写好的 actions
         with: # 自定义环境变量
-          ACCESS_TOKEN: ${{ secrets.HANDY_VUE_CIL }}
+          TOKEN: ${{ secrets.HANDY_VUE_CIL }}
           BRANCH: gh-pages
           FOLDER: dist
