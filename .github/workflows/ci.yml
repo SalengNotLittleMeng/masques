@@ -14,12 +14,12 @@ jobs:
 
       - name: Install and Build # 下载依赖 打包项目
         run: |
-          npm i
+          yarn
           npm run build
 
       - name: Deploy # 将打包内容发布到 github page
         uses: JamesIves/github-pages-deploy-action@v4 # 使用别人写好的 actions
         with: # 自定义环境变量
-          TOKEN: ${{ secrets.HANDY_VUE_CIL }}
-          BRANCH: gh-pages
-          FOLDER: dist
+          token: ${{ secrets.HANDY_VUE_CIL }}
+          branch: gh-pages
+          folder: dist
