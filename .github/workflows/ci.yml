@@ -8,17 +8,17 @@ jobs:
     runs-on: ubuntu-latest # 构建环境使用 ubuntu
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
 
       - name: Install and Build # 下载依赖 打包项目
         run: |
-          yarn
+          npm i
           npm run build
 
       - name: Deploy # 将打包内容发布到 github page
-        uses: JamesIves/github-pages-deploy-action@3.5.9 # 使用别人写好的 actions
+        uses: JamesIves/github-pages-deploy-action@v4 # 使用别人写好的 actions
         with: # 自定义环境变量
           TOKEN: ${{ secrets.HANDY_VUE_CIL }}
           BRANCH: gh-pages
