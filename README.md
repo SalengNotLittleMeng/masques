@@ -540,4 +540,18 @@ commitlint.config.js 这个文件中配置了提交规范，提交信息必须�
 为了确保提交信息规范，更建议用 npm run commit 代替 git commit,在 git add .后，使用 npm run commit 命令会自动出现选项界面，选择对应的修改类型并填写信息，commitlint 就可以自动生成符合规范的提交信息
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/cb79acf8933640c0b6461a87e4d6bde4.png)
 
-** 选项的英文看不懂可以参考 commitlint.config.js 中的注释 **
+选项的含义看不懂可以参考 commitlint.config.js 中的注释
+
+## 自动化集成
+
+目前项目会默认部署在 github Page 上，每次代码更新完成并上传后，都会利用 github 的 action 自动打包并发布到 GitHub Page(https://salengnotlittlemeng.github.io/Handy-Vue-Cli/#/)
+
+项目会利用第三方的 action 工具进行自动化集成，会在每次更新主分支（master）上的代码后，将主分支上的代码进行打包，将打包完成的文件推送到 gh-pages 分支上，同时自动部署到 Github page
+
+在运行此功能前，注意要开启项目仓库的 GitHub Page 权限
+
+相关的脚本在.github/workflows/ci.yml 文件夹下，当要利用本脚手架创建项目时，注意将 name 名为 Deploy 下的参数进行修改，比如修改打包后文件所在的文件名(floder 参数)和要上传到的分支（默认为 gh-pages,如果仓库没有该分支注意创建），千万不要将上传的分支名改为主分支，否则打包后的文件会覆盖掉工程文件
+
+另外，第三方 action 还可以进行各种更细致的配置，具体参考：
+
+https://github.com/JamesIves/github-pages-deploy-action
