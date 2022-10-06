@@ -552,6 +552,6 @@ commitlint.config.js 这个文件中配置了提交规范，提交信息必须�
 
 相关的脚本在.github/workflows/ci.yml 文件夹下，当要利用本脚手架创建项目时，注意将 name 名为 Deploy 下的参数进行修改，比如修改打包后文件所在的文件名(floder 参数)和要上传到的分支（默认为 gh-pages,如果仓库没有该分支注意创建），千万不要将上传的分支名改为主分支，否则打包后的文件会覆盖掉工程文件
 
-另外，第三方 action 还可以进行各种更细致的配置，具体参考：
+另外，第三方 action 还可以进行各种更细致的配置，具体参考!!：
 
 https://github.com/JamesIves/github-pages-deploy-action
