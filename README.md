@@ -367,19 +367,19 @@ meta 属性还可以用来配置路由的权限,当配置了此权限后，只�
 
 directive 文件夹下的 index.js 会**自动收集**模块中所有的自定义指令并作为插件挂载到 Vue 上，因此，如果要添加全局自定义指令，只需要在 src/directive 文件夹下创建自定义指令名命名的 JS 文件并暴露出去即可
 
-## iconfoot 的使用
+## iconfont 的使用
 
-iconfoot 已经被封装成组件并挂载到全局，在任意组件中无需引入即可使用
+iconfont 已经被封装成组件并挂载到全局，在任意组件中无需引入即可使用
 
 ```js
 <vue-icon iconClass="bofang" color="red"></vue-icon>
 ```
 
-iconClass 是一个必选项，要根据 iconfoot 官网中项目的名字来写,名字前去掉 icon，其余可以传的属性还包括：
+iconClass 是一个必选项，要根据 iconfont 官网中项目的名字来写,名字前去掉 icon，其余可以传的属性还包括：
 
 color,width,height,cursor
 
-对于 icon 这个组件封装的思路是引入了 iconfoot 上生成的 symbol 代码，因此只能使用项目中的 icon，如果要新增 icon，则要重新生成 symbol 代码并将生成的代码复制到 src/assets/icon/iconfoot.js 中
+对于 icon 这个组件封装的思路是引入了 iconfont 上生成的 symbol 代码，因此只能使用项目中的 icon，如果要新增 icon，则要重新生成 symbol 代码并将生成的代码复制到 src/assets/icon/iconfont.js 中
 
 ## 全局组件注册
 
