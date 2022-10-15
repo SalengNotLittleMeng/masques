@@ -3,7 +3,9 @@ const CompressionPlugin = require('compression-webpack-plugin');
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
-module.exports = {
+const userProxy = true;
+const icon = './favicon.ico';
+let config = {
   assetsDir: 'static',
   parallel: false,
   publicPath: './',
@@ -42,11 +44,11 @@ module.exports = {
   },
   pwa: {
     iconPaths: {
-      favicon32: './favicon.ico',
-      favicon16: './favicon.ico',
-      appleTouchIcon: './favicon.ico',
-      maskIcon: './favicon.ico',
-      msTileImage: './favicon.ico',
+      favicon32: icon,
+      favicon16: icon,
+      appleTouchIcon: icon,
+      maskIcon: icon,
+      msTileImage: icon,
     },
   },
   devServer: {
@@ -65,3 +67,7 @@ module.exports = {
     },
   },
 };
+if (!userProxy) {
+  config.devServer = {};
+}
+module.exports = config;

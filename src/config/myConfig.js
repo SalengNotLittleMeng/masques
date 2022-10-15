@@ -9,6 +9,8 @@ const config = {
   useMock: true,
   // 是否启用路由拦截
   useBeforeEach: false,
+  //  是否启用auth认证
+  useAuth: false,
   // http 的auth设置
   auth: {
     username: 'testeradmin',

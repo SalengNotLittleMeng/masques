@@ -24,7 +24,7 @@ const LoadingInstance = {
 // 创建实例
 const instance = axios.create({
   // 基础路径
-  baseURL: 'http://localhost:8888',
+  baseURL: Baseconfig.baseurl,
   // 请求限时
   timeout: 5000,
 });
@@ -32,7 +32,9 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     // 添加auth凭证
-    Baseconfig.auth && (config.auth = Baseconfig.auth);
+    if (Baseconfig.useAuth) {
+      Baseconfig.auth && (config.auth = Baseconfig.auth);
+    }
     // 取消重复请求
     config.repeat_request_cancel && removePending(config, Boolean(config.retryTimes));
     addPending(config);

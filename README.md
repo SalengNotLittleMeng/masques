@@ -529,7 +529,6 @@ less 的公共变量分为以下部分
 脚手架中已经配置好了 prettier，执行 npm run format 即可将所有 js 和 vue 文件进行格式化，你也可以按照 prettier 的命令，对任意文件进行单独格式化
 
 在 git-hooks 中，prettier 会被执行，确保每一次提交前都完成代码格式化
-<<<<<<< HEAD
 
 ## gitHooks 与 commitlint
 
@@ -541,6 +540,12 @@ commitlint.config.js 这个文件中配置了提交规范，提交信息必须�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/cb79acf8933640c0b6461a87e4d6bde4.png)
 
 选项的含义看不懂可以参考 commitlint.config.js 中的注释
+
+## 本地代理
+
+框架默认开启 vue 脚手架中自带的 proxy 代理，代理会将后端的请求代理到本地来解决跨域的问题，如果需要开启跨域，请将 config/myConfig.js 配置中的 baseurl 设置为/api，将 vue.config.js 中的 devServe 中的接口改为后端提供的接口
+
+代理会自动将/api 的请求用本地代理来解决跨域问题，仅本地生效，进入生产环境注意关闭
 
 ## 自动化集成
 
