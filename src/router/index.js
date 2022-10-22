@@ -2,7 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import '../utils/login';
 import { isAuthenticated } from '../utils/login';
 import config from '../config/myConfig';
+/*handy-vue-cli-template */
 import Home from '../view/Demo/DemoHome.vue';
+/*handy-vue-cli-template */
 const routes = [
   {
     path: '/',

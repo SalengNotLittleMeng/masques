@@ -5,10 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "prepare": "husky install",
-    "format": "npx prettier --write .",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "npx eslint src --fix",
     "commit": "npx git-cz",
-    "lint": "npx eslint src --fix"
+    "format": "npx prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@floating-ui/dom": "^0.4.5",
@@ -26,6 +27,7 @@
     "sprage": "^1.2.0",
     "vue": "^3.2.4",
     "vue-router": "^4.0.0-0",
+    "vue-template-compiler": "^2.7.13",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {

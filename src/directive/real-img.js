@@ -17,8 +17,8 @@ async function useRealImg(el, binding) {
   }
   const imgURL = binding.value;
   if (imgURL) {
-    const exist = await imageIsExist(imgURL);
-    exist && el.setAttribute('src', imgURL);
+    const exist = await imageIsExist(el.src);
+    !exist && el.setAttribute('src', imgURL);
   }
 }
 // 判断一个图片是否存在, 注意是异步行为；
