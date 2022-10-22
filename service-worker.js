@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.103b56f6a7c9175e07909c5956e624b8.js"
+  "precache-manifest.e059a25853068e13348e7eebae7c0c43.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "lingyun"});
+workbox.core.setCacheNameDetails({prefix: "handy-vue-cli"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
