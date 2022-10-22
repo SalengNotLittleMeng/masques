@@ -17,7 +17,19 @@ let config = {
     },
   },
   configureWebpack: (config) => {
+    // 配置@为根目录
     config.resolve.alias['@'] = resolve('src');
+    config.resolve = {
+      ...config.resolve,
+      // 指明node_modules的路径
+      modules: [path.resolve(__dirname, './node_modules')],
+      // 当引入不带后缀名时，仅查询是否存在js和vue文件
+      extensions: ['.js', '.vue'],
+    };
+    config.externals = {
+      // 如果有通过cdn引入的库，可以再次忽略此库的打包
+    };
+    // 兼容使用mjs的第三方库
     config.module.rules.push({
       test: /\.mjs$/,
       include: /node_modules/,
@@ -30,6 +42,7 @@ let config = {
       if (true) {
         config.plugins = [
           ...config.plugins,
+          // 开启gizp压缩
           new CompressionPlugin({
             test: /\.js$|\.html$|.\css/, //匹配文件名
             threshold: 10240, //对超过10k的数据压缩
@@ -44,11 +57,11 @@ let config = {
   },
   pwa: {
     iconPaths: {
-      favicon32: icon,
-      favicon16: icon,
-      appleTouchIcon: icon,
-      maskIcon: icon,
-      msTileImage: icon,
+      favicon32: './favicon.ico',
+      favicon16: './favicon.ico',
+      appleTouchIcon: './favicon.ico',
+      maskIcon: './favicon.ico',
+      msTileImage: './favicon.ico',
     },
   },
   devServer: {
