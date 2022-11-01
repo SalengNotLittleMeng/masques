@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.e059a25853068e13348e7eebae7c0c43.js"
+  "precache-manifest.f63114709c5cd362a75867cca860d254.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "handy-vue-cli"});
