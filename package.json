@@ -11,6 +11,9 @@
     "format": "npx prettier --write .",
     "prepare": "husky install"
   },
+  "bin": {
+    "cm": "bin/cm"
+  },
   "dependencies": {
     "@floating-ui/dom": "^0.4.5",
     "@vueuse/core": "^8.3.1",

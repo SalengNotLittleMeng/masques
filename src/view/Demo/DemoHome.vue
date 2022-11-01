@@ -2,7 +2,7 @@
   <div>
     <p>更快，更便捷，开箱即用的Vue脚手架</p>
     <img @click="getData" class="logo-img" src="@/assets/img/logo.png" alt="" />
-    <h1>Handy-Vue-Cli</h1>
+    <h1>Handy-Vue-Template</h1>
     <div class="type-main">
       <div class="type-main-item" v-for="item in typeList">{{ item }}</div>
     </div>
