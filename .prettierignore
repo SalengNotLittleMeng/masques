@@ -1,7 +1,0 @@
-# Ignore artifacts:
-.github
-.husky
-dist
-dics
-public
-src/assets

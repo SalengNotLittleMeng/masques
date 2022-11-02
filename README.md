@@ -560,3 +560,22 @@ commitlint.config.js 这个文件中配置了提交规范，提交信息必须�
 另外，第三方 action 还可以进行各种更细致的配置，具体参考!!：
 
 https://github.com/JamesIves/github-pages-deploy-action
+
+## 文档生成
+
+项目基于jsdoc来生成文档，执行npm run doc命令来自动在项目根目录的docs文件中生成文档，在docs中的index.html中即可查看各个组件的文档
+
+默认配置中仅会根据src/view目录下的组件来生成文档，如果想要生成文档，需要在对应组件的JS头部去配置jsdoc-vuejs,主要注解包括：
+
+```js
+/** Deom组件
+ * @vue-prop {Object} props - 生成props属性
+ * @vue-data {Array}  datas - 生成data中的参数
+ * @vue-computed {String} computedFunc - 生成计算属性方法
+ * @vue-event {undefined} methodFunc - 生成methods的方法
+ */
+
+```
+更详细的配置可以参考：
+
+https://github.com/Kocal/jsdoc-vuejs
