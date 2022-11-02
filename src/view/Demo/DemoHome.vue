@@ -10,6 +10,11 @@
 </template>
 
 <script>
+/** Deom组件
+ * @vue-prop {Object} props - 组件Props
+ * @vue-data {Array}  typeList - 脚手架功能列表
+ * @vue-event {undefined} methods - methods方法
+ */
 export default {
   mounted() {
     this.$api.homeApi.getMsg().then((res) => {

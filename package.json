@@ -9,7 +9,8 @@
     "lint": "npx eslint src --fix",
     "commit": "npx git-cz",
     "format": "npx prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "doc": "jsdoc -r -c .jsdoc.conf.json"
   },
   "bin": {
     "cm": "bin/cm"
@@ -26,6 +27,8 @@
     "lodash-es": "^4.17.21",
     "lodash-unified": "^1.0.2",
     "qs": "^6.11.0",
+    "jsdoc": "^3.6.11",
+    "jsdoc-vuejs": "^4.0.0",
     "register-service-worker": "^1.7.1",
     "sprage": "^1.2.0",
     "vue": "^3.2.4",
