@@ -1,5 +1,5 @@
 /**
- * Animator类，封装的动画函数
+ * Animator类，封装的动画函数，支持异步调用
  * @constructor
  * @param {number} duration 第一个是动画的总时长.
  * @param {function} update - 动画每一帧的 update 事件.
