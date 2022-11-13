@@ -25,6 +25,7 @@ class Animator {
 
       function step(timestamp) {
         startTime = startTime || timestamp;
+        // 计算动画开始的时间和当前执行到的时间的差并求与执行时间的比例，这个比例就是使用时的参数P，用p执行动画与将p视为时间t是等效的
         const p = Math.min(1.0, (timestamp - startTime) / duration);
 
         update.call(self, easing ? easing(p) : p, p);
