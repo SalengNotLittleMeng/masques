@@ -88,7 +88,6 @@ instance.interceptors.response.use(
       // 延时处理
       const delay = new Promise((resolve) => {
         setTimeout(() => {
-          console.log(_retryCount);
           resolve();
         }, retryDelay);
       });

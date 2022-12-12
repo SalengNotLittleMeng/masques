@@ -5,6 +5,8 @@
     <check-form>
       <DemoForm></DemoForm>
     </check-form>
+    <my-input v-model="text"></my-input>
+    <div>{{ text }}</div>
     <h1>Handy-Vue-Template</h1>
     <div class="type-main">
       <div class="type-main-item" v-for="item in typeList">{{ item }}</div>
@@ -14,6 +16,7 @@
 
 <script>
 import DemoForm from './DemoForm.vue';
+import MyInput from './MyInput.vue';
 /** Deom组件
  * @vue-prop {Object} props - 组件Props
  * @vue-data {Array}  typeList - 脚手架功能列表
@@ -29,9 +32,11 @@ export default {
   methods: {},
   components: {
     DemoForm,
+    MyInput,
   },
   data() {
     return {
+      text: 'hello',
       typeList: [
         '对 axios 进行了模块化的二次封装',
         '对动画进行了 promise 封装使其可以进行链式调用',
