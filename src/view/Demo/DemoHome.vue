@@ -1,12 +1,7 @@
 <template>
   <div>
     <p>更快，更便捷，开箱即用的Vue脚手架</p>
-    <!-- <img @click="getData" class="logo-img" v-draggable src="@/assets/img/logo.png" alt="" /> -->
-    <check-form>
-      <DemoForm></DemoForm>
-    </check-form>
-    <my-input v-model="text"></my-input>
-    <div>{{ text }}</div>
+    <img @click="getData" class="logo-img" src="@/assets/img/logo.png" alt="" />
     <h1>Handy-Vue-Template</h1>
     <div class="type-main">
       <div class="type-main-item" v-for="item in typeList">{{ item }}</div>
@@ -15,8 +10,6 @@
 </template>
 
 <script>
-import DemoForm from './DemoForm.vue';
-import MyInput from './MyInput.vue';
 /** Deom组件
  * @vue-prop {Object} props - 组件Props
  * @vue-data {Array}  typeList - 脚手架功能列表
@@ -30,10 +23,6 @@ export default {
     console.log('helo');
   },
   methods: {},
-  components: {
-    DemoForm,
-    MyInput,
-  },
   data() {
     return {
       text: 'hello',
