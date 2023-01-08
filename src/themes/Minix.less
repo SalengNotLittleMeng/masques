@@ -31,14 +31,15 @@
   flex-wrap: @fw;
   -webkit-flex-wrap: @fw;
 }
-.pxToVW(@px,@attr:width) when(@attr=width){
-  @vw:(@px / 375) *100;
-  @{attr}:~"@{vw}vw"
+// px和Vw的转化
+.pxToVW(@px,@attr:width) when(@attr=width) {
+  @vw: (@px / 375) * 100;
+  @{attr}: ~'@{vw}vw';
 }
-.pxToVW(@px,@attr:width) when(@attr=height){
-  @vw:(@px / 375) *100;
-  @{attr}:~"@{vw}vh"
+.pxToVW(@px,@attr:width) when(@attr=height) {
+  @vw: (@px / 375) * 100;
+  @{attr}: ~'@{vw}vh';
 }
-.pxToEm(@px,@attr:width){
-  @{attr}:"{@px/12}em"
+.pxToEm(@px,@attr:width) {
+  @{attr}: '{@px/12}em';
 }
