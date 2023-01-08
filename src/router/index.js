@@ -2,11 +2,11 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import '../utils/login';
 import { isAuthenticated } from '../utils/login';
 import config from '../config/myConfig';
-import { importAll } from '@/src/utils/module';
+import { importAll } from '../utils/module';
 /*handy-vue-cli-template */
 import Home from '../view/Demo/DemoHome.vue';
 /*handy-vue-cli-template */
-const modules = importAll('./modules', /\.js$/);
+const modules = importAll(require.context('./modules', false, /\.js$/));
 const routes = [
   {
     path: '/',

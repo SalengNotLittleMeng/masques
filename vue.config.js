@@ -27,8 +27,10 @@ let config = {
       extensions: ['.js', '.vue'],
     };
     config.externals = {
-      // 如果有通过cdn引入的库，可以再次忽略此库的打包
+      // 如果有通过cdn引入的库，可以在此处忽略此库的打包
     };
+    // 解决require不支持变量的问题
+    config.module.unknownContextCritical = false;
     // 兼容使用mjs的第三方库
     config.module.rules.push({
       test: /\.mjs$/,

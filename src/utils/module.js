@@ -1,11 +1,9 @@
-export function importAll(path, regexp, isRecursion = false) {
-  const ms = require.context(path, isRecursion, regexp);
+export function importAll(modulesMessage) {
   const modules = {};
-
-  ms.keys().forEach((item) => {
+  modulesMessage.keys().forEach((item) => {
     const name = item.substring(2, item.length - 3);
 
-    modules[name] = ms(item).default;
+    modules[name] = modulesMessage(item).default;
   });
   return modules;
 }

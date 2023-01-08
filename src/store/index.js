@@ -1,6 +1,6 @@
 import { createStore } from 'vuex';
-import { importAll } from '@/src/utils/module';
-const modules = importAll('./modules', /\.js$/);
+import { importAll } from '../utils/module';
+const modules = importAll(require.context('./modules', false, /\.js$/));
 for (const m in modules) {
   const { state, mutations } = modules[m];
   for (const i in state) {
