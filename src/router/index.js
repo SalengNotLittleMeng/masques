@@ -3,22 +3,9 @@ import '../utils/login';
 import { isAuthenticated } from '../utils/login';
 import config from '../config/myConfig';
 import { importAll } from '../utils/module';
-/*handy-vue-cli-template */
-import Home from '../view/Demo/DemoHome.vue';
-/*handy-vue-cli-template */
+// 模块化引入路由信息
 const modules = importAll(require.context('./modules', false, /\.js$/));
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-    meta: {
-      title: '主页',
-    },
-    children: [],
-  },
-];
-
+const routes = Object.values(modules);
 const router = createRouter({
   // history: createWebHistory(process.env.BASE_URL),
   history: createWebHashHistory(),
