@@ -60,6 +60,7 @@ axios 的封装做了以下几个方面的处理：
 - 配置化添加 auth 凭证
 - 支持重连机制
 - 支持使用注解进行开发
+- 支持并发的请求处理
 
 axois 进行了模块化划分和自动装配，每个模块开发时新建一个**以 Api.js 结尾的文件**（比如 homeApi.js）,先从 http.js 中引入封装好的 axios,然后将对应接口写成函数并暴露出来，在 api.js 中，会执行模块自动装配，将所有暴露出来的函数按模块放入一个对象并暴露出来
 
@@ -563,9 +564,9 @@ https://github.com/JamesIves/github-pages-deploy-action
 
 ## 文档生成
 
-项目基于jsdoc来生成文档，执行npm run doc命令来自动在项目根目录的docs文件中生成文档，在docs中的index.html中即可查看各个组件的文档
+项目基于 jsdoc 来生成文档，执行 npm run doc 命令来自动在项目根目录的 docs 文件中生成文档，在 docs 中的 index.html 中即可查看各个组件的文档
 
-默认配置中仅会根据src/view目录下的组件来生成文档，如果想要生成文档，需要在对应组件的JS头部去配置jsdoc-vuejs,主要注解包括：
+默认配置中仅会根据 src/view 目录下的组件来生成文档，如果想要生成文档，需要在对应组件的 JS 头部去配置 jsdoc-vuejs,主要注解包括：
 
 ```js
 /** Deom组件
@@ -574,8 +575,8 @@ https://github.com/JamesIves/github-pages-deploy-action
  * @vue-computed {String} computedFunc - 生成计算属性方法
  * @vue-event {undefined} methodFunc - 生成methods的方法
  */
-
 ```
+
 更详细的配置可以参考：
 
 https://github.com/Kocal/jsdoc-vuejs
