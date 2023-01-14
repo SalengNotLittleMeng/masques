@@ -16,12 +16,7 @@
  * @vue-event {undefined} methods - methods方法
  */
 export default {
-  mounted() {
-    this.$api.homeApi.getMsg().then((res) => {
-      console.log(res);
-    });
-    console.log('helo');
-  },
+  mounted() {},
   methods: {},
   data() {
     return {

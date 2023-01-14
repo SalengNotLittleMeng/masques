@@ -25,7 +25,6 @@ import './Mock/index';
 const app = createApp(App);
 // 将axios的二次封装（api）挂载到全局
 app.config.globalProperties.$api = api;
-app.config.globalProperties.$echarts = echarts;
 // 生产环境下取消警告机制
 if (process.env.NODE_ENV === 'production') {
   app.config.warnHandler = () => null;
