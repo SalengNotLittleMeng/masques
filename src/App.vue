@@ -10,6 +10,11 @@
 export default {
   name: 'App',
   components: {},
+  data() {
+    return {
+      a: 1,
+    };
+  },
 };
 </script>
 
