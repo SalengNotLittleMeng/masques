@@ -1,22 +1,16 @@
-# 脚手架使用文档
+# masques
+
+masques 是一款基于 Vue3 的中后台前端解决方案，用于快速搭建中后台项目。由项目脚手架，cli 工具和一系列插件组成，可以用插件的形式引入一部分功能，具体包括:
 
 vue-cli 版本:4.5.0
-本脚手架在 Vue-cli 的基础上增加了如下功能：
 
-- 对 axios 进行了模块化的二次封装
-- 对动画进行了 promise 封装使其可以进行链式调用
-- 对动画的函数进行封装，可以使用函数的方式代替贝塞尔曲线来确定动画的执行速度曲线
-- 将 iconfoot 封装成了组件，可以通过对组件传参的方式调用
-- 设置了 eachart,element 的全局调用
-- 对 Vuex 进行了模块化处理。
-- Vue-router 的全局守卫
-- 添加了 Mock 的封装来模拟数据
-- 添加了 less 的全局遍历，公用类，全局混入
-- 添加了常用工具函数
-- 添加了常用注解
-- 添加了常用自定义指令
-- 设置了 prettier 进行代码格式化
-- 设置了 gitHooks 和 commitlint,提交时自动格式化并保证 commit 风格统一
+- 项目脚手架，内置项目的全部功能，并默认配置基于 githook 的校验机制和 github 的 CI 配置，文档生成等
+- 项目 cli 工具，用于以命令行的方式拉取项目模版（cli 工具地址：https://github.com/SalengNotLittleMeng/masques-cli）
+- 配置式请求层插件，可以通过插件的形式接入任何 Vue 项目，可以通过配置实现断线重连，取消重复请求，差异抹平，loading 动画等效果（插件化接入：https://github.com/SalengNotLittleMeng/masques-request）
+- 自定义指令插件，可通过自定义指令的方式轻松实现图片懒加载，一键复制，无限滚动，自动聚焦，可拖动，备用图等功能（插件化接入：https://github.com/SalengNotLittleMeng/masques-directives）
+- 增强式存储工具，实现 localstorage 的序列化，设置过期时间，批量存储等功能
+- 开发工具库，包括 less 工具类和 JS 工具类，快速实现格式校验，省略号，日期校验等问题
+- 支持注解（装饰器）开发，可以通过一些内置装饰器来完成请求，操作 Vuex 等效果
 
 ## 目录结构
 
