@@ -8,7 +8,7 @@ vue-cli 版本:4.5.0
 - 项目 cli 工具，用于以命令行的方式拉取项目模版（cli 工具地址：https://github.com/SalengNotLittleMeng/masques-cli  ）
 - 配置式请求层插件，可以通过插件的形式接入任何 Vue 项目，可以通过配置实现断线重连，取消重复请求，差异抹平，loading 动画等效果（插件化接入：https://github.com/SalengNotLittleMeng/masques-request  ）
 - 自定义指令插件，可通过自定义指令的方式轻松实现图片懒加载，一键复制，无限滚动，自动聚焦，可拖动，备用图等功能（插件化接入：https://github.com/SalengNotLittleMeng/masques-directives  ）
-- 增强式存储工具，实现 localstorage 的序列化，设置过期时间，批量存储等功能
+- 增强式存储工具，实现 localstorage 的序列化，响应式存储数据，lru对象，设置过期时间，批量存储，加密等功能(插件化接入：https://github.com/SalengNotLittleMeng/masques-storage  ）
 - 开发工具库，包括 less 工具类和 JS 工具类，快速实现格式校验，省略号，日期校验等问题
 - 支持注解（装饰器）开发，可以通过一些内置装饰器来完成请求，操作 Vuex 等效果
 
