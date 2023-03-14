@@ -42,6 +42,8 @@ vue-cli 版本:4.5.0
 
 ## axios 封装
 
+插件化配置插件见仓库：https://github.com/SalengNotLittleMeng/masques-request 
+
 axios 封装的代码在 src/api/http.js 中，
 
 axios 的封装做了以下几个方面的处理：
